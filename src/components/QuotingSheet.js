@@ -47,35 +47,49 @@ export default function QuotingSheet() {
                 newItem = {
                     inputType: inputType,
                     input: inputValue,
-                    category: "name"
+                    category: "Name"
                 };
                 break;
             case "number":
                 newItem = {
                     inputType: inputType,
                     input: inputValue,
-                    category: "number"
+                    category: "Number"
                 };
                 break;
             case "email":
                 newItem = {
                     inputType: inputType,
                     input: inputValue,
-                    category: "email"
+                    category: "Email"
                 };
                 break;
             case "date":
                 newItem = {
                     inputType: inputType,
                     input: inputValue,
-                    category: "date"
+                    category: "Date"
                 };
                 break;
             case "time":
                 newItem = {
                     inputType: inputType,
                     input: inputValue,
-                    category: "time"
+                    category: "Time"
+                };
+                break;
+            case "address":
+                newItem = {
+                    inputType: inputType,
+                    input: inputValue,
+                    category: "Address"
+                };
+                break;
+            case "noofpeople":
+                newItem = {
+                    inputType: inputType,
+                    input: inputValue,
+                    category: "No. of people"
                 };
                 break;
             case "bread":
@@ -145,12 +159,25 @@ export default function QuotingSheet() {
 
             <div>
                 <h3>Submitted Items:</h3>
+                <p style={{ color: 'green', fontWeight: 'bold' }}>CUSTOMER DETAIL</p>
 
-                {items.map((item, index) => (
-                    <li key={index}>
-                        {item.category}: {item.input}
-                    </li>
-                ))}
+                {items
+                    .filter(item => item.category === 'Name' || item.category === 'Number' || item.category === "Email")
+                    .map((item, index) => (
+                        <p key={index} style={{ alignContent: 'left' }}>
+                            {item.category}: {item.input}
+                        </p>
+                    ))}
+
+                <p style={{ color: 'green', fontWeight: 'bold' }}>FUNCTION DETAIL</p>
+
+                {items
+                    .filter(item => item.category === 'Date' || item.category === 'Time' || item.category === "No. of people" || item.category === "Address")
+                    .map((item, index) => (
+                        <p key={index} style={{ alignContent: 'left' }}>
+                            {item.category}: {item.input}
+                        </p>
+                    ))}
 
             </div>
 

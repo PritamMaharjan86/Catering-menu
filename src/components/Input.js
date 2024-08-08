@@ -12,6 +12,8 @@ function Input({handleSubmit, inputType, inputValue, handleTypeChange, handleVal
                         <option value="email">Customer Email</option>
                         <option value="date">Date of Function</option>
                         <option value="time">Time of Function</option>
+                        <option value="address">Address</option>
+                        <option value="noofpeople">Number of people</option>
                         <option value="bread">Bread</option>
                         <option value="pumpkin">Pumpkin</option>
                         <option value="sidings">Sidings</option>
