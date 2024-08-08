@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import '../components/QuotingSheet.css';
 import SausageSizzle from './Menu/SausageSizzle';
+import Input from './Input';
+import Button from './Button';
 
 export default function QuotingSheet() {
     const [inputType, setInputType] = useState('text');
     const [inputValue, setInputValue] = useState('');
+    const [option, setOption] = useState('');
     const [items, setItems] = useState([]);
+    const [showQuote, setShowQuote] = useState(false);
+
 
     const handleTypeChange = (e) => {
         setInputType(e.target.value);
@@ -15,6 +19,18 @@ export default function QuotingSheet() {
     const handleValueChange = (e) => {
         setInputValue(e.target.value);
     };
+
+    const handleButtonClick = () => {
+        if (option === 'SausageSizzle') {
+            setShowQuote(true);
+        }
+    };
+
+    const handleOption = (e) => {
+        setOption(e.target.value);
+    };
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -97,6 +113,13 @@ export default function QuotingSheet() {
                     category: "meat"
                 };
                 break;
+            case "cost":
+                newItem = {
+                    inputType: inputType,
+                    input: inputValue,
+                    category: "cost"
+                };
+                break;
 
             default:
                 return;
@@ -106,62 +129,42 @@ export default function QuotingSheet() {
         setInputValue('');
     };
 
+
+
+
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Select input type:
-                    <select value={inputType} onChange={handleTypeChange}>
-                        <option value="text">Customer Name</option>
-                        <option value="number">Customer Number</option>
-                        <option value="email">Customer Email</option>
-                        <option value="date">Date of Function</option>
-                        <option value="time">Time of Function</option>
-                        <option value="bread">Bread</option>
-                        <option value="pumpkin">Pumpkin</option>
-                        <option value="sidings">Sidings</option>
-                        <option value="meat">Meats</option>
-                        <option value="salad">Salad</option>
-                        <option value="appetiser">Appetiser</option>
-                    </select>
-                </label>
-                <br />
-                <label>
-                    Enter value:
-                    <input
-                        type={inputType}
-                        value={inputValue}
-                        onChange={handleValueChange}
-                    />
-                    {inputType === 'bread' && (
-                        <select
-                            value={inputValue}
-                            onChange={handleValueChange}
-                        >
-                            <option value="">Select an option</option>
-                            <option value="banana bread">bread 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                        </select>
-                    )}
+            <Input
+                handleTypeChange={handleTypeChange}
+                handleSubmit={handleSubmit}
+                handleValueChange={handleValueChange}
+                inputType={inputType}
+                inputValue={inputValue}
 
-                </label>
-                <br />
-                <button type="submit">Submit</button>
-            </form>
+            />
 
             <div>
                 <h3>Submitted Items:</h3>
-                <ul>
-                    {items.map((item, index) => (
-                        <li key={index}>
-                            {item.category}: {item.input}
-                        </li>
-                    ))}
-                </ul>
+
+                {items.map((item, index) => (
+                    <li key={index}>
+                        {item.category}: {item.input}
+                    </li>
+                ))}
+
             </div>
 
-            <SausageSizzle items={items} />
+            <Button
+                SausageSizzle={SausageSizzle}
+                showQuote={showQuote}
+                handleButtonClick={handleButtonClick}
+                handleOption={handleOption}
+                items={items}
+                option={option}
+
+
+            />
+
         </div>
     );
 }
