@@ -1,12 +1,11 @@
 import './App.css';
-import QuotingSheet from '../src/components/QuotingSheet';
+import Routing from './Routes/Route';
 
 
 function App() {
   return (
     <div className="App">
-
-      <QuotingSheet />
+      <Routing />
     </div>
   );
 }
