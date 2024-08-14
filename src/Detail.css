@@ -1,0 +1,56 @@
+.form-container {
+  display: grid;
+  grid-template-columns: 200px 1fr; /* 200px for the heading column, remaining space for details */
+  gap: 20px; /* Space between the columns */
+  margin: 20px auto; /* Center the form container */
+  max-width: 800px; /* Maximum width of the container */
+}
+
+.row {
+  display: contents; /* To avoid extra spacing, each row follows the grid structure */
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0; /* Remove default margin */
+  padding: 10px 0; /* Space inside the heading */
+  border-bottom: 2px solid #ccc; /* Optional: border under the heading */
+  align-self: start; /* Align the heading with the top of the column */
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between input fields */
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* Make input fields full width */
+}
+
+/* Ensure dropdowns are styled consistently with other inputs */
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* Make dropdowns full width */
+  background-color: white; /* Background color for dropdown */
+}
+
+/* Detail.css */
+textarea {
+  width: 100%; /* Full width of the container */
+  height: 200px; /* Fixed height of the textarea */
+  padding: 10px; /* Space inside the textarea */
+  font-size: 16px; /* Font size of the text */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  resize: vertical; /* Allow vertical resizing */
+  overflow-y: auto; /* Add vertical scrollbar if needed */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
