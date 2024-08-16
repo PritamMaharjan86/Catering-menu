@@ -28,6 +28,7 @@ export default function Detail() {
         freebies: '',
 
         //Particulars
+        cost: '',
         textValue: '',
     });
 
@@ -59,11 +60,6 @@ export default function Detail() {
 
     }
 
-    const [dropdownVisible, setDropdownVisible] = useState(null);
-
-    const handleDropdownToggle = (buttonType) => {
-        setDropdownVisible(dropdownVisible === buttonType ? null : buttonType);
-    };
 
     return (
         <>
@@ -71,6 +67,13 @@ export default function Detail() {
                 <div className="row">
                     <h1>Customer Detail</h1>
                     <div className="column">
+                        <input
+                            onChange={handleChange}
+                            value={input.contactDate}
+                            name="contactDate"
+                            type="date"
+                            placeholder="Enter Contact Date"
+                        />
                         <input
                             onChange={handleChange}
                             value={input.name}
@@ -82,9 +85,12 @@ export default function Detail() {
                             onChange={handleChange}
                             value={input.phNumber}
                             name="phNumber"
-                            type="number"
+                            type="tel"  // Correct type for phone numbers
                             placeholder="Enter User Phone Number"
+                            pattern="[0-9]{10}"  // Example pattern for 10-digit phone numbers
+                            title="Phone number should be 10 digits without spaces or special characters."
                         />
+
                         <input
                             onChange={handleChange}
                             value={input.email}
@@ -92,6 +98,21 @@ export default function Detail() {
                             type="email"
                             placeholder="Enter User Email"
                         />
+                        <input
+                            onChange={handleChange}
+                            value={input.inquiryForm}
+                            name="inquiryForm"
+                            type="text"
+                            placeholder="Inquiry Source/Form"
+                        />
+                        <input
+                            onChange={handleChange}
+                            value={input.guestNo}
+                            name="guestNo"
+                            type="number"
+                            placeholder="Enter Number of Guests"
+                        />
+
                     </div>
                 </div>
 
@@ -102,29 +123,33 @@ export default function Detail() {
                             onChange={handleChange}
                             value={input.functionDate}
                             name="functionDate"
-                            type="text"
+                            type="date"
                             placeholder="Enter Function Date"
                         />
-                        <input
+                        <select
                             onChange={handleChange}
                             value={input.menu}
                             name="menu"
-                            type="text"
-                            placeholder="Enter Menu"
-                        />
+                        >
+                            <option value="">Select Menu Type</option>
+                            <option value="BBHSausageSizzle">BBH Sausage Sizzle</option>
+                            <option value="BBHMeatOnly">BBH Meat Only</option>
+                            <option value="BBH2Course">BBH 2 Course</option>
+                            <option value="BBH3Course">BBH 3 Course</option>
+                        </select>
                         <input
                             onChange={handleChange}
                             value={input.occasion}
                             name="occasion"
                             type="text"
-                            placeholder="Enter Occasion"
+                            placeholder="Occasion"
                         />
                         <input
                             onChange={handleChange}
                             value={input.reference}
                             name="reference"
                             type="text"
-                            placeholder="Enter Reference"
+                            placeholder="How customer contact you?"
                         />
                     </div>
                 </div>
@@ -138,9 +163,13 @@ export default function Detail() {
                             name="bread"
                         >
                             <option value="">Select Bread Type</option>
-                            <option value="wholeWheat">Whole Wheat</option>
-                            <option value="white">White Bread</option>
-                            <option value="multigrain">Multigrain</option>
+                            <option value="Dinner roll">Dinner roll</option>
+                            <option value="Damper roll">Damper roll</option>
+                            <option value="Garlic bread">Garlic bread</option>
+                            <option value="Hotdog roll">Hotdog roll</option>
+                            <option value="Burger buns">Burger buns</option>
+                            <option value="Pita bread">Pita bread</option>
+                            <option value="Sliced bread">Sliced bread</option>
                         </select>
 
                         <select
@@ -148,10 +177,15 @@ export default function Detail() {
                             value={input.pumpkin}
                             name="pumpkin"
                         >
-                            <option value="">Select Pumpkin Dish</option>
-                            <option value="pumpkinSoup">Pumpkin Soup</option>
-                            <option value="roastedPumpkin">Roasted Pumpkin</option>
-                            <option value="pumpkinPie">Pumpkin Pie</option>
+                            <option value="">Select Pumpkin Size</option>
+                            <option value="1 Pumpkin large">1 Pumpkin large</option>
+                            <option value="2 Pumpkin large">2 Pumpkin large</option>
+                            <option value="3 Pumpkin large">3 Pumpkin large</option>
+                            <option value="4 Pumpkin large">4 Pumpkin large</option>
+                            <option value="1 Pumpkin medium">1 Pumpkin medium</option>
+                            <option value="2 Pumpkin medium">2 Pumpkin medium</option>
+                            <option value="3 Pumpkin medium">3 Pumpkin medium</option>
+
                         </select>
 
                         <select
@@ -163,6 +197,12 @@ export default function Detail() {
                             <option value="mashedPotatoes">Mashed Potatoes</option>
                             <option value="steamedVeggies">Steamed Veggies</option>
                             <option value="grilledCorn">Grilled Corn</option>
+                            <option value="jacketPotatoes">Jacket Potatoes</option>
+                            <option value="slicedOnion">Sliced Onion</option>
+                            <option value="sigwarmpotato">Sig Warm Potatoes</option>
+                            <option value="bbqbakedpotatoes">BBQ Baked Potatoes</option>
+                            <option value="pea">Pea/Carrot/Corn</option>
+                            <option value="steamedpotato">Steamed Potatoes</option>
                         </select>
 
                         <select
@@ -171,10 +211,64 @@ export default function Detail() {
                             name="meats"
                         >
                             <option value="">Select Meat</option>
-                            <option value="chicken">Chicken</option>
-                            <option value="beef">Beef</option>
-                            <option value="lamb">Lamb</option>
+                            <option value="chicken">Whole Chicken</option>
+                            <option value="beef">Beef Rump</option>
+                            <option value="lamb">Whole Lamb</option>
+                            <option value="bonelessPork">Boneless Pork Leg Roll</option>
+                            <option value="porketta">Porketta</option>
+                            <option value="wholePig">Whole Pig</option>
+                            <option value="aussieSausage">Aussie Sausage</option>
+                            <option value="tenderloin">Chicken Tenderloin</option>
+                            <option value="vegSausage">Vegetarian Sausage</option>
+                            <option value="hamburger">Hamburger Pattie</option>
+                            <option value="veggie">Veggie Sausage</option>
+                            <option value="minuteSteak">Minute Steak</option>
+                            <option value="wings">Chicken Wings</option>
+                            <option value="kebab">Chicken Kebab</option>
+                            <option value="pattie">Chicken Pattie</option>
+                            <option value="vegPattie">Veggie Pattie</option>
                         </select>
+
+                        <select
+                            onChange={handleChange}
+                            value={input.appetiser}
+                            name="appetiser"
+                        >
+                            <option value="">Select Appetiser</option>
+                            <option value="caba">Caba, Cheese, Crackers</option>
+                            <option value="burrito">Burrito Melts</option>
+                            <option value="proscuito">Prosciuto and Asparagus</option>
+                        </select>
+
+                        <input
+                            onChange={handleChange}
+                            value={input.salad}
+                            name="salad"
+                            type="text"
+                            placeholder="Salad"
+                        />
+
+                        <select
+                            onChange={handleChange}
+                            value={input.freebies}
+                            name="freebies"
+                        >
+                            <option value="">Select Frebbies</option>
+                            <option value="assortedDrinks">Assorted Drinks</option>
+                            <option value="teaCoffee">Tea / Coffee</option>
+                            <option value="gravy">Gravy</option>
+                            <option value="petit">Petit Cake</option>
+                            <option value="extraSalad">Extra Salad</option>
+
+                        </select>
+                        <input
+                            onChange={handleChange}
+                            value={input.cost}
+                            name="cost"
+                            type="number"
+                            placeholder="Enter $ cost"
+                        />
+
                     </div>
                 </div>
 
@@ -189,43 +283,15 @@ export default function Detail() {
                         rows="4"
                         cols="50"
                     />
+
+
                 </div>
 
 
 
             </div>
             <button className='btn-primary' onClick={handleSave}>Download</button>
-            <div className="dropdown-container">
-                <button
-                    className='btn-secondary'
-                    onClick={() => handleDropdownToggle('quote')}
-                >
-                    Create Quote
-                </button>
-                {dropdownVisible === 'quote' && (
-                    <div className="dropdown-menu">
-                        <button onClick={handleSave}>Quote Option 1</button>
-                        <button onClick={handleSave}>Quote Option 2</button>
-                        <button onClick={handleSave}>Quote Option 3</button>
-                    </div>
-                )}
-            </div>
 
-            <div className="dropdown-container">
-                <button
-                    className='btn-danger'
-                    onClick={() => handleDropdownToggle('book')}
-                >
-                    Book Now
-                </button>
-                {dropdownVisible === 'book' && (
-                    <div className="dropdown-menu">
-                        <button onClick={handleSave}>Book Option 1</button>
-                        <button onClick={handleSave}>Book Option 2</button>
-                        <button onClick={handleSave}>Book Option 3</button>
-                    </div>
-                )}
-            </div>
         </>
     );
 }
