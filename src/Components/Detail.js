@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import '../Detail.css';
+import SausageSizzle from './SausageSizzle';
+import MeatOnly from './MeatOnly';
 
 export default function Detail() {
     const [input, setInput] = useState({
@@ -32,6 +34,8 @@ export default function Detail() {
         textValue: '',
     });
 
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setInput({
@@ -40,25 +44,29 @@ export default function Detail() {
         });
     };
 
-    const handleSave = () => { // Convert input state to an array of arrays
+    const handleSave = () => {
         const data = [
             ['Field', 'Value'],
-            ...Object.entries(input) // Convert object entries to array of arrays
+            ...Object.entries(input)
         ];
 
-        // Create a new workbook
         const workbook = XLSX.utils.book_new();
-
-        // Convert the array of arrays to a worksheet
         const worksheet = XLSX.utils.aoa_to_sheet(data);
-
-        // Append the worksheet to the workbook
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-
-        // Generate Excel file and trigger download
         XLSX.writeFile(workbook, 'FormDetails.xlsx');
+    };
 
-    }
+    const handleQuote = () => {
+        if (input.menu === 'BBHSausageSizzle') {
+            setSausageSizzle(true);
+
+        } if (input.menu === 'BBHMeatOnly') {
+            setMeatonly(true);
+        }
+    };
+
+    const [sausageSizzle, setSausageSizzle] = useState(false);
+    const [meatonly, setMeatonly] = useState(false);
 
 
     return (
@@ -103,7 +111,7 @@ export default function Detail() {
                             value={input.inquiryForm}
                             name="inquiryForm"
                             type="text"
-                            placeholder="Inquiry Source/Form"
+                            placeholder="How did customer contact you?"
                         />
                         <input
                             onChange={handleChange}
@@ -149,7 +157,7 @@ export default function Detail() {
                             value={input.reference}
                             name="reference"
                             type="text"
-                            placeholder="How customer contact you?"
+                            placeholder="How did customer find you?"
                         />
                     </div>
                 </div>
@@ -178,13 +186,13 @@ export default function Detail() {
                             name="pumpkin"
                         >
                             <option value="">Select Pumpkin Size</option>
-                            <option value="1 Pumpkin large">1 Pumpkin large</option>
-                            <option value="2 Pumpkin large">2 Pumpkin large</option>
-                            <option value="3 Pumpkin large">3 Pumpkin large</option>
-                            <option value="4 Pumpkin large">4 Pumpkin large</option>
-                            <option value="1 Pumpkin medium">1 Pumpkin medium</option>
-                            <option value="2 Pumpkin medium">2 Pumpkin medium</option>
-                            <option value="3 Pumpkin medium">3 Pumpkin medium</option>
+                            <option value="1 Pumpkin Large">1 Pumpkin large</option>
+                            <option value="2 Pumpkin Large">2 Pumpkin large</option>
+                            <option value="3 Pumpkin Large">3 Pumpkin large</option>
+                            <option value="4 Pumpkin Large">4 Pumpkin large</option>
+                            <option value="1 Pumpkin Medium">1 Pumpkin medium</option>
+                            <option value="2 Pumpkin Medium">2 Pumpkin medium</option>
+                            <option value="3 Pumpkin Medium">3 Pumpkin medium</option>
 
                         </select>
 
@@ -194,15 +202,15 @@ export default function Detail() {
                             name="sidings"
                         >
                             <option value="">Select Sidings</option>
-                            <option value="mashedPotatoes">Mashed Potatoes</option>
-                            <option value="steamedVeggies">Steamed Veggies</option>
-                            <option value="grilledCorn">Grilled Corn</option>
-                            <option value="jacketPotatoes">Jacket Potatoes</option>
-                            <option value="slicedOnion">Sliced Onion</option>
-                            <option value="sigwarmpotato">Sig Warm Potatoes</option>
-                            <option value="bbqbakedpotatoes">BBQ Baked Potatoes</option>
-                            <option value="pea">Pea/Carrot/Corn</option>
-                            <option value="steamedpotato">Steamed Potatoes</option>
+                            <option value="Mashed Potatoes">Mashed Potatoes</option>
+                            <option value="Steamed Veggies">Steamed Veggies</option>
+                            <option value="Grilled Corn">Grilled Corn</option>
+                            <option value="Jacket Potatoes">Jacket Potatoes</option>
+                            <option value="Sliced Onion">Sliced Onion</option>
+                            <option value="Sigwarm Potatoes">Sig Warm Potatoes</option>
+                            <option value="BBq Baked Potatoes">BBQ Baked Potatoes</option>
+                            <option value="Pea / Carrot / Corn">Pea/Carrot/Corn</option>
+                            <option value="Steamed Potatoes">Steamed Potatoes</option>
                         </select>
 
                         <select
@@ -211,22 +219,22 @@ export default function Detail() {
                             name="meats"
                         >
                             <option value="">Select Meat</option>
-                            <option value="chicken">Whole Chicken</option>
-                            <option value="beef">Beef Rump</option>
-                            <option value="lamb">Whole Lamb</option>
-                            <option value="bonelessPork">Boneless Pork Leg Roll</option>
-                            <option value="porketta">Porketta</option>
-                            <option value="wholePig">Whole Pig</option>
-                            <option value="aussieSausage">Aussie Sausage</option>
-                            <option value="tenderloin">Chicken Tenderloin</option>
-                            <option value="vegSausage">Vegetarian Sausage</option>
-                            <option value="hamburger">Hamburger Pattie</option>
-                            <option value="veggie">Veggie Sausage</option>
-                            <option value="minuteSteak">Minute Steak</option>
-                            <option value="wings">Chicken Wings</option>
-                            <option value="kebab">Chicken Kebab</option>
-                            <option value="pattie">Chicken Pattie</option>
-                            <option value="vegPattie">Veggie Pattie</option>
+                            <option value="Whole Chicken">Whole Chicken</option>
+                            <option value="Beef Rump">Beef Rump</option>
+                            <option value="Whole Lamb">Whole Lamb</option>
+                            <option value="Boneless Pork Leg Roll">Boneless Pork Leg Roll</option>
+                            <option value="Porketta">Porketta</option>
+                            <option value="Whole Pig">Whole Pig</option>
+                            <option value="Aussie Sausage">Aussie Sausage</option>
+                            <option value="Chicken Tenderloin">Chicken Tenderloin</option>
+                            <option value="Vegetarian Sausage">Vegetarian Sausage</option>
+                            <option value="Hamburger Pattie">Hamburger Pattie</option>
+                            <option value="Veggie Sausage">Veggie Sausage</option>
+                            <option value="Minute Steak">Minute Steak</option>
+                            <option value="Chicken Wings">Chicken Wings</option>
+                            <option value="Chicken Kebab">Chicken Kebab</option>
+                            <option value="Chicken Pattie">Chicken Pattie</option>
+                            <option value="Veggie Pattie">Veggie Pattie</option>
                         </select>
 
                         <select
@@ -235,9 +243,9 @@ export default function Detail() {
                             name="appetiser"
                         >
                             <option value="">Select Appetiser</option>
-                            <option value="caba">Caba, Cheese, Crackers</option>
-                            <option value="burrito">Burrito Melts</option>
-                            <option value="proscuito">Prosciuto and Asparagus</option>
+                            <option value="Caba, Cheese, Crackers">Caba, Cheese, Crackers</option>
+                            <option value="Burrito Melts">Burrito Melts</option>
+                            <option value="Proscuito and Asparagus">Prosciuto and Asparagus</option>
                         </select>
 
                         <input
@@ -254,11 +262,11 @@ export default function Detail() {
                             name="freebies"
                         >
                             <option value="">Select Frebbies</option>
-                            <option value="assortedDrinks">Assorted Drinks</option>
-                            <option value="teaCoffee">Tea / Coffee</option>
-                            <option value="gravy">Gravy</option>
-                            <option value="petit">Petit Cake</option>
-                            <option value="extraSalad">Extra Salad</option>
+                            <option value="Assorted Drinks">Assorted Drinks</option>
+                            <option value="Tea Coffee">Tea / Coffee</option>
+                            <option value="Gravy">Gravy</option>
+                            <option value="Petit">Petit Cake</option>
+                            <option value="Extra Salad">Extra Salad</option>
 
                         </select>
                         <input
@@ -286,12 +294,44 @@ export default function Detail() {
 
 
                 </div>
-
-
-
             </div>
-            <button className='btn-primary' onClick={handleSave}>Download</button>
 
+            <button className='btn-primary' onClick={handleSave}>Download</button>
+            <button className='btn-secondary' onClick={handleQuote}>Create Quote</button>
+
+            {sausageSizzle && (
+                <SausageSizzle
+                    name={input.name}
+                    bread={input.bread}
+                    pumpkin={input.pumpkin}
+                    meats={input.meats}
+                    sidings={input.sidings}
+                    appetiser={input.appetiser}
+                    salad={input.salad}
+                    freebies={input.freebies}
+                    cost={input.cost}
+                    functionDate={input.functionDate}
+                    number={input.guestNo}
+
+                />
+            )}
+
+            {meatonly && (
+                <MeatOnly
+                    name={input.name}
+                    bread={input.bread}
+                    pumpkin={input.pumpkin}
+                    meats={input.meats}
+                    sidings={input.sidings}
+                    appetiser={input.appetiser}
+                    salad={input.salad}
+                    freebies={input.freebies}
+                    cost={input.cost}
+                    functionDate={input.functionDate}
+                    number={input.guestNo}
+
+                />
+            )}
         </>
     );
 }
