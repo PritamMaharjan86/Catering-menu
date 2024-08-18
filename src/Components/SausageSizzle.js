@@ -1,7 +1,7 @@
 import React from 'react';
 import { saveAs } from 'file-saver';
 
-export default function SausageSizzle({ name, bread, pumpkin, meats, sidings, appetiser, salad, freebies, cost, functionDate, number }) {
+export default function SausageSizzle({ textValue, name, bread, pumpkin, meats, sidings, appetiser, salad, freebies, cost, functionDate, number }) {
 
     const handleDownload = () => {
         // Get the content of the div
@@ -16,11 +16,10 @@ export default function SausageSizzle({ name, bread, pumpkin, meats, sidings, ap
                 <style>
                     @page {
                         size: A4;
-                        margin: 20mm;
                     }
                     img {
-                        max-width: 100%;
-                        height: auto;
+                        width: 28%;
+                        height: 28%;
                     }
                 </style>
             </head>
@@ -40,7 +39,7 @@ export default function SausageSizzle({ name, bread, pumpkin, meats, sidings, ap
     return (
         <div>
             <div id="quotation-content" style={{ fontFamily: 'Arial, sans-serif', color: '#333', lineHeight: '1.6', padding: '20px', border: '1px solid #ddd', borderRadius: '10px', width: '800px', margin: 'auto', backgroundColor: 'white' }}>
-                <img style={{ width: '100%', borderBottom: '2px solid #555' }} src='https://res.cloudinary.com/dedpvue13/image/upload/v1723893237/Barbehaus-letterhead_v4myn9.png' />
+                <img style={{ width: '100%', borderBottom: '2px solid #555' }} src='https://res.cloudinary.com/dedpvue13/image/upload/v1723893237/Barbehaus-letterhead_v4myn9.png' alt="" />
 
                 <div style={{ margin: '20px 30px' }}>
                     <p>{functionDate}</p>
@@ -49,7 +48,7 @@ export default function SausageSizzle({ name, bread, pumpkin, meats, sidings, ap
 
                     <p style={{ textAlign: 'center', fontSize: '25px', fontWeight: 'bold', textDecoration: 'underline', margin: '40px 0' }}>BBQ Sizzle Package for {number} Guests</p>
 
-                    <div style={{ margin: '20px 0', paddingLeft: '20px' }}>
+                    <div style={{ margin: '20px 0', paddingLeft: '20px', textAlign: 'center' }}>
                         <p><strong>Bread:</strong> {bread}</p>
                         <p><strong>Pumpkin:</strong> {pumpkin}</p>
                         <p><strong>Meats:</strong> {meats}</p>
@@ -60,20 +59,23 @@ export default function SausageSizzle({ name, bread, pumpkin, meats, sidings, ap
                     </div>
 
                     <p style={{ textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}>TOTAL: <span style={{ color: '#d9534f' }}>${cost} </span> (GST Inclusive)</p>
+                    <p style={{textAlign:'center', fontStyle:'italic', textDecoration:'underline'}}> Note: 2.3% surcharge will apply for credit card payment.</p>
 
                     <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '40px 0' }} />
 
-                    <p style={{ textDecoration: 'underline', fontWeight: 'bold' }}>Extras</p>
-                    <p>{freebies}</p>
-                    <p>Our chef will cook and serve the juicy Barbecue Sizzle to your guests, adding their own personal touch on the night. Your guests will not only leave your party with a belly full of great food, but also feeling satisfied that their meal was really looked after.</p>
+                    <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Extras</p>
+                    <p style={{ textAlign: 'center' }}>{freebies}</p>
+                    <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Additional Notes</p>
+                    <p style={{ textAlign: 'center' }}>{textValue}</p>
+                    <p style={{ textAlign: 'center' }}>Our chef will cook and serve the juicy Barbecue Sizzle to your guests, adding their own personal touch on the night. Your guests will not only leave your party with a belly full of great food, but also feeling satisfied that their meal was really looked after.</p>
 
-                    <p>If you have any questions, please feel free to call or email. I look forward to hearing from you soon.</p>
+                    <p style={{ textAlign: 'center' }}>If you have any questions, please feel free to call or email. I look forward to hearing from you soon.</p>
 
                     <p style={{ marginTop: '60px' }}>Kind regards,</p>
                     <p>Geofrey Oliva - Manager</p>
                 </div>
 
-                <img style={{ width: '100%', borderTop: '2px solid #555' }} src='https://res.cloudinary.com/dedpvue13/image/upload/v1723893361/Barbehaus-letterhead_2_iwp0mv.png' alt="Barbehaus Letterhead" />
+                <img style={{ width: '100%', borderTop: '2px solid #555', height: 'auto' }} src='https://res.cloudinary.com/dedpvue13/image/upload/v1723893361/Barbehaus-letterhead_2_iwp0mv.png' alt="Barbehaus Letterhead" />
             </div>
             <button className='btn-primary' onClick={handleDownload}>Download</button>
         </div >

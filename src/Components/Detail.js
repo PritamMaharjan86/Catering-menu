@@ -5,6 +5,12 @@ import SausageSizzle from './SausageSizzle';
 import MeatOnly from './MeatOnly';
 
 export default function Detail() {
+
+    const getTodayDate = () => {
+        const today = new Date();
+        return today.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+    };
+
     const [input, setInput] = useState({
         // Customer detail
         name: '',
@@ -12,7 +18,7 @@ export default function Detail() {
         email: '',
         inquiryForm: '',
         guestNo: '',
-        contactDate: '',
+        contactDate:  getTodayDate(),
 
         // Function detail
         functionDate: '',
@@ -29,18 +35,22 @@ export default function Detail() {
         appetiser: '',
         freebies: '',
 
-        //Particulars
+        // Particulars
         cost: '',
         textValue: '',
     });
 
+    const [sausageSizzle, setSausageSizzle] = useState(false);
+    const [meatonly, setMeatonly] = useState(false);
 
-
+   
     const handleChange = (e) => {
         const { name, value } = e.target;
+        const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1);
+
         setInput({
             ...input,
-            [name]: value,
+            [name]: capitalizedValue,
         });
     };
 
@@ -59,15 +69,15 @@ export default function Detail() {
     const handleQuote = () => {
         if (input.menu === 'BBHSausageSizzle') {
             setSausageSizzle(true);
-
-        } if (input.menu === 'BBHMeatOnly') {
+            setMeatonly(false);
+        } else if (input.menu === 'BBHMeatOnly') {
+            setSausageSizzle(false);
             setMeatonly(true);
+        } else {
+            setSausageSizzle(false);
+            setMeatonly(false);
         }
     };
-
-    const [sausageSizzle, setSausageSizzle] = useState(false);
-    const [meatonly, setMeatonly] = useState(false);
-
 
     return (
         <>
@@ -93,12 +103,11 @@ export default function Detail() {
                             onChange={handleChange}
                             value={input.phNumber}
                             name="phNumber"
-                            type="tel"  // Correct type for phone numbers
+                            type="tel"
                             placeholder="Enter User Phone Number"
-                            pattern="[0-9]{10}"  // Example pattern for 10-digit phone numbers
-                            title="Phone number should be 10 digits without spaces or special characters."
+                            pattern="^(?:\+61|0)[2-478](?:[ -]?[0-9]){8}$"
+                            title="Phone number should be in the format: +61 4xx xxx xxx or 04xx xxx xxx"
                         />
-
                         <input
                             onChange={handleChange}
                             value={input.email}
@@ -106,13 +115,16 @@ export default function Detail() {
                             type="email"
                             placeholder="Enter User Email"
                         />
-                        <input
+                        <select
                             onChange={handleChange}
                             value={input.inquiryForm}
                             name="inquiryForm"
-                            type="text"
-                            placeholder="How did customer contact you?"
-                        />
+                        >
+                            <option value="">How did customer contact you?</option>
+                            <option value="Phone">Phone</option>
+                            <option value="Website">Website</option>
+                            <option value="Email">Email</option>
+                        </select>
                         <input
                             onChange={handleChange}
                             value={input.guestNo}
@@ -120,7 +132,6 @@ export default function Detail() {
                             type="number"
                             placeholder="Enter Number of Guests"
                         />
-
                     </div>
                 </div>
 
@@ -193,7 +204,6 @@ export default function Detail() {
                             <option value="1 Pumpkin Medium">1 Pumpkin medium</option>
                             <option value="2 Pumpkin Medium">2 Pumpkin medium</option>
                             <option value="3 Pumpkin Medium">3 Pumpkin medium</option>
-
                         </select>
 
                         <select
@@ -208,7 +218,7 @@ export default function Detail() {
                             <option value="Jacket Potatoes">Jacket Potatoes</option>
                             <option value="Sliced Onion">Sliced Onion</option>
                             <option value="Sigwarm Potatoes">Sig Warm Potatoes</option>
-                            <option value="BBq Baked Potatoes">BBQ Baked Potatoes</option>
+                            <option value="BBQ Baked Potatoes">BBQ Baked Potatoes</option>
                             <option value="Pea / Carrot / Corn">Pea/Carrot/Corn</option>
                             <option value="Steamed Potatoes">Steamed Potatoes</option>
                         </select>
@@ -245,7 +255,7 @@ export default function Detail() {
                             <option value="">Select Appetiser</option>
                             <option value="Caba, Cheese, Crackers">Caba, Cheese, Crackers</option>
                             <option value="Burrito Melts">Burrito Melts</option>
-                            <option value="Proscuito and Asparagus">Prosciuto and Asparagus</option>
+                            <option value="Proscuito and Asparagus">Prosciutto and Asparagus</option>
                         </select>
 
                         <input
@@ -261,13 +271,12 @@ export default function Detail() {
                             value={input.freebies}
                             name="freebies"
                         >
-                            <option value="">Select Frebbies</option>
+                            <option value="">Select Freebies</option>
                             <option value="Assorted Drinks">Assorted Drinks</option>
                             <option value="Tea Coffee">Tea / Coffee</option>
                             <option value="Gravy">Gravy</option>
                             <option value="Petit">Petit Cake</option>
                             <option value="Extra Salad">Extra Salad</option>
-
                         </select>
                         <input
                             onChange={handleChange}
@@ -276,12 +285,10 @@ export default function Detail() {
                             type="number"
                             placeholder="Enter $ cost"
                         />
-
                     </div>
                 </div>
 
                 <div className='row'>
-
                     <h1>Particulars</h1>
                     <textarea
                         value={input.textValue}
@@ -291,8 +298,6 @@ export default function Detail() {
                         rows="4"
                         cols="50"
                     />
-
-
                 </div>
             </div>
 
@@ -312,7 +317,7 @@ export default function Detail() {
                     cost={input.cost}
                     functionDate={input.functionDate}
                     number={input.guestNo}
-
+                    textValue={input.textValue}
                 />
             )}
 
@@ -329,7 +334,7 @@ export default function Detail() {
                     cost={input.cost}
                     functionDate={input.functionDate}
                     number={input.guestNo}
-
+                    textValue={input.textValue}
                 />
             )}
         </>
