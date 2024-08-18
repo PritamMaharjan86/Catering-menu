@@ -18,7 +18,7 @@ export default function Detail() {
         email: '',
         inquiryForm: '',
         guestNo: '',
-        contactDate:  getTodayDate(),
+        contactDate: getTodayDate(),
 
         // Function detail
         functionDate: '',
@@ -43,15 +43,31 @@ export default function Detail() {
     const [sausageSizzle, setSausageSizzle] = useState(false);
     const [meatonly, setMeatonly] = useState(false);
 
-   
+
+    const formatPhoneNumber = (number) => {
+        const cleaned = number.replace(/\D/g, '');
+        const limitedDigits = cleaned.slice(0, 10);
+        const formatted = limitedDigits.replace(/(\d{4})(\d{3})(\d{3})/, '$1 $2 $3');
+        return formatted;
+    };
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1);
 
-        setInput({
-            ...input,
-            [name]: capitalizedValue,
-        });
+        if (name === 'phNumber') {
+            setInput((prevInput) => ({
+                ...prevInput,
+                [name]: formatPhoneNumber(value),
+            }));
+        } else {
+
+            setInput({
+                ...input,
+                [name]: capitalizedValue,
+            });
+        }
     };
 
     const handleSave = () => {
@@ -107,7 +123,9 @@ export default function Detail() {
                             placeholder="Enter User Phone Number"
                             pattern="^(?:\+61|0)[2-478](?:[ -]?[0-9]){8}$"
                             title="Phone number should be in the format: +61 4xx xxx xxx or 04xx xxx xxx"
+                            required
                         />
+                        
                         <input
                             onChange={handleChange}
                             value={input.email}
