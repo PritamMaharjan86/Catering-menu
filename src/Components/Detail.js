@@ -27,13 +27,13 @@ export default function Detail() {
         reference: '',
 
         // Catering detail
-        bread: '',
-        pumpkin: '',
-        sidings: '',
-        meats: '',
-        salad: '',
-        appetiser: '',
-        freebies: '',
+        bread: [''],
+        pumpkin: [''],
+        sidings: [''],
+        meats: [''],
+        salad: [''],
+        appetiser: [''],
+        freebies: [''],
 
         // Particulars
         cost: '',
@@ -51,8 +51,7 @@ export default function Detail() {
         return formatted;
     };
 
-
-    const handleChange = (e) => {
+    const handleChange = (e, index = null, category = null) => {
         const { name, value } = e.target;
         const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1);
 
@@ -61,13 +60,37 @@ export default function Detail() {
                 ...prevInput,
                 [name]: formatPhoneNumber(value),
             }));
-        } else {
+        } else if (index !== null && category !== null) {
+            // Handle dynamic category inputs (like meats, salad, etc.)
+            const newValues = [...input[category]];
+            newValues[index] = capitalizedValue;
 
-            setInput({
-                ...input,
+            setInput((prevInput) => ({
+                ...prevInput,
+                [category]: newValues,
+            }));
+        } else {
+            // Handle regular inputs
+            setInput((prevInput) => ({
+                ...prevInput,
                 [name]: capitalizedValue,
-            });
+            }));
         }
+    };
+
+    const addOption = (category) => {
+        setInput((prevInput) => ({
+            ...prevInput,
+            [category]: [...prevInput[category], ''],
+        }));
+    };
+
+    const removeOption = (index, category) => {
+        const newValues = input[category].filter((_, i) => i !== index);
+        setInput({
+            ...input,
+            [category]: newValues,
+        });
     };
 
     const handleSave = () => {
@@ -125,7 +148,7 @@ export default function Detail() {
                             title="Phone number should be in the format: +61 4xx xxx xxx or 04xx xxx xxx"
                             required
                         />
-                        
+
                         <input
                             onChange={handleChange}
                             value={input.email}
@@ -194,132 +217,139 @@ export default function Detail() {
                 <div className="row">
                     <h1>Catering Detail</h1>
                     <div className="column">
-                        <select
-                            onChange={handleChange}
-                            value={input.bread}
-                            name="bread"
-                        >
-                            <option value="">Select Bread Type</option>
-                            <option value="Dinner roll">Dinner roll</option>
-                            <option value="Damper roll">Damper roll</option>
-                            <option value="Garlic bread">Garlic bread</option>
-                            <option value="Hotdog roll">Hotdog roll</option>
-                            <option value="Burger buns">Burger buns</option>
-                            <option value="Pita bread">Pita bread</option>
-                            <option value="Sliced bread">Sliced bread</option>
-                        </select>
+                        {/* Bread Selection */}
+                        {input.bread.map((bread, index) => (
+                            <div key={index} className="multi-input-row">
+                                <select onChange={(e) => handleChange(e, index, 'bread')} value={bread}>
+                                    <option value="">Select Bread Type</option>
+                                    <option value="Dinner roll">Dinner roll</option>
+                                    <option value="Damper roll">Damper roll</option>
+                                    <option value="Garlic bread">Garlic bread</option>
+                                    <option value="Hotdog roll">Hotdog roll</option>
+                                    <option value="Burger buns">Burger buns</option>
+                                    <option value="Pita bread">Pita bread</option>
+                                    <option value="Sliced bread">Sliced bread</option>
+                                </select>
+                                {index > 0 && <button onClick={() => removeOption(index, 'bread')}>Remove</button>}
+                            </div>
+                        ))}
+                        <button className='button' onClick={() => addOption('bread')}>Add Bread</button>
 
-                        <select
-                            onChange={handleChange}
-                            value={input.pumpkin}
-                            name="pumpkin"
-                        >
-                            <option value="">Select Pumpkin Size</option>
-                            <option value="1 Pumpkin Large">1 Pumpkin large</option>
-                            <option value="2 Pumpkin Large">2 Pumpkin large</option>
-                            <option value="3 Pumpkin Large">3 Pumpkin large</option>
-                            <option value="4 Pumpkin Large">4 Pumpkin large</option>
-                            <option value="1 Pumpkin Medium">1 Pumpkin medium</option>
-                            <option value="2 Pumpkin Medium">2 Pumpkin medium</option>
-                            <option value="3 Pumpkin Medium">3 Pumpkin medium</option>
-                        </select>
+                        {/* Pumpkin Selection */}
+                        {input.pumpkin.map((pumpkin, index) => (
+                            <div key={index} className="multi-input-row">
+                                <select onChange={(e) => handleChange(e, index, 'pumpkin')} value={pumpkin}>
+                                    <option value="">Select Pumpkin Size</option>
+                                    <option value="1 Pumpkin Large">1 Pumpkin large</option>
+                                    <option value="2 Pumpkin Large">2 Pumpkin large</option>
+                                    <option value="3 Pumpkin Large">3 Pumpkin large</option>
+                                    <option value="4 Pumpkin Large">4 Pumpkin large</option>
+                                    <option value="1 Pumpkin Medium">1 Pumpkin medium</option>
+                                    <option value="2 Pumpkin Medium">2 Pumpkin medium</option>
+                                    <option value="3 Pumpkin Medium">3 Pumpkin medium</option>
+                                </select>
+                                {index > 0 && <button onClick={() => removeOption(index, 'pumpkin')}>Remove</button>}
+                            </div>
+                        ))}
+                        <button className='button' onClick={() => addOption('pumpkin')}>Add Pumpkin</button>
 
-                        <select
-                            onChange={handleChange}
-                            value={input.sidings}
-                            name="sidings"
-                        >
-                            <option value="">Select Sidings</option>
-                            <option value="Mashed Potatoes">Mashed Potatoes</option>
-                            <option value="Steamed Veggies">Steamed Veggies</option>
-                            <option value="Grilled Corn">Grilled Corn</option>
-                            <option value="Jacket Potatoes">Jacket Potatoes</option>
-                            <option value="Sliced Onion">Sliced Onion</option>
-                            <option value="Sigwarm Potatoes">Sig Warm Potatoes</option>
-                            <option value="BBQ Baked Potatoes">BBQ Baked Potatoes</option>
-                            <option value="Pea / Carrot / Corn">Pea/Carrot/Corn</option>
-                            <option value="Steamed Potatoes">Steamed Potatoes</option>
-                        </select>
+                        {/* Sidings Selection */}
+                        {input.sidings.map((siding, index) => (
+                            <div key={index} className="multi-input-row">
+                                <select onChange={(e) => handleChange(e, index, 'sidings')} value={siding}>
+                                    <option value="">Select Sidings</option>
+                                    <option value="Mashed Potatoes">Mashed Potatoes</option>
+                                    <option value="Steamed Veggies">Steamed Veggies</option>
+                                    <option value="Grilled Corn">Grilled Corn</option>
+                                    <option value="Jacket Potatoes">Jacket Potatoes</option>
+                                    <option value="Sliced Onion">Sliced Onion</option>
+                                    <option value="Sigwarm Potatoes">Sig Warm Potatoes</option>
+                                    <option value="BBQ Baked Potatoes">BBQ Baked Potatoes</option>
+                                    <option value="Pea / Carrot / Corn">Pea/Carrot/Corn</option>
+                                    <option value="Steamed Potatoes">Steamed Potatoes</option>
+                                </select>
+                                {index > 0 && <button onClick={() => removeOption(index, 'sidings')}>Remove</button>}
+                            </div>
+                        ))}
+                        <button className='button' onClick={() => addOption('sidings')}>Add Sidings</button>
 
-                        <select
-                            onChange={handleChange}
-                            value={input.meats}
-                            name="meats"
-                        >
-                            <option value="">Select Meat</option>
-                            <option value="Whole Chicken">Whole Chicken</option>
-                            <option value="Beef Rump">Beef Rump</option>
-                            <option value="Whole Lamb">Whole Lamb</option>
-                            <option value="Boneless Pork Leg Roll">Boneless Pork Leg Roll</option>
-                            <option value="Porketta">Porketta</option>
-                            <option value="Whole Pig">Whole Pig</option>
-                            <option value="Aussie Sausage">Aussie Sausage</option>
-                            <option value="Chicken Tenderloin">Chicken Tenderloin</option>
-                            <option value="Vegetarian Sausage">Vegetarian Sausage</option>
-                            <option value="Hamburger Pattie">Hamburger Pattie</option>
-                            <option value="Veggie Sausage">Veggie Sausage</option>
-                            <option value="Minute Steak">Minute Steak</option>
-                            <option value="Chicken Wings">Chicken Wings</option>
-                            <option value="Chicken Kebab">Chicken Kebab</option>
-                            <option value="Chicken Pattie">Chicken Pattie</option>
-                            <option value="Veggie Pattie">Veggie Pattie</option>
-                        </select>
+                        {/* Meats Selection */}
+                        {input.meats.map((meat, index) => (
+                            <div key={index} className="multi-input-row">
+                                <select onChange={(e) => handleChange(e, index, 'meats')} value={meat}>
+                                    <option value="">Select Meat Type</option>
+                                    <option value="Beef Steak">Beef Steak</option>
+                                    <option value="Lamb Chops">Lamb Chops</option>
+                                    <option value="Chicken Thigh">Chicken Thigh</option>
+                                    <option value="Pork Sausages">Pork Sausages</option>
+                                    <option value="Beef Sausages">Beef Sausages</option>
+                                    <option value="BBQ Ribs">BBQ Ribs</option>
+                                    <option value="Chicken Wings">Chicken Wings</option>
+                                    <option value="Lamb Ribs">Lamb Ribs</option>
+                                </select>
+                                {index > 0 && <button onClick={() => removeOption(index, 'meats')}>Remove</button>}
+                            </div>
+                        ))}
+                        <button className='button' onClick={() => addOption('meats')}>Add Meat</button>
 
-                        <select
-                            onChange={handleChange}
-                            value={input.appetiser}
-                            name="appetiser"
-                        >
-                            <option value="">Select Appetiser</option>
-                            <option value="Caba, Cheese, Crackers">Caba, Cheese, Crackers</option>
-                            <option value="Burrito Melts">Burrito Melts</option>
-                            <option value="Proscuito and Asparagus">Prosciutto and Asparagus</option>
-                        </select>
+                        {/* Salad Selection */}
+                        {input.salad.map((salad, index) => (
+                            <div key={index} className="multi-input-row">
+                                <select onChange={(e) => handleChange(e, index, 'salad')} value={salad}>
+                                    <option value="">Select Salad Type</option>
+                                    <option value="Greek Salad">Greek Salad</option>
+                                    <option value="Caesar Salad">Caesar Salad</option>
+                                    <option value="Garden Salad">Garden Salad</option>
+                                    <option value="Potato Salad">Potato Salad</option>
+                                    <option value="Pasta Salad">Pasta Salad</option>
+                                    <option value="Coleslaw">Coleslaw</option>
+                                    <option value="Fruit Salad">Fruit Salad</option>
+                                </select>
+                                {index > 0 && <button onClick={() => removeOption(index, 'salad')}>Remove</button>}
+                            </div>
+                        ))}
+                        <button className='button' onClick={() => addOption('salad')}>Add Salad</button>
 
-                        <input
-                            onChange={handleChange}
-                            value={input.salad}
-                            name="salad"
-                            type="text"
-                            placeholder="Salad"
-                        />
+                        {/* Appetiser Selection */}
+                        {input.appetiser.map((appetiser, index) => (
+                            <div key={index} className="multi-input-row">
+                                <select onChange={(e) => handleChange(e, index, 'appetiser')} value={appetiser}>
+                                    <option value="">Select Appetiser Type</option>
+                                    <option value="Cheese Platter">Cheese Platter</option>
+                                    <option value="Vegetable Platter">Vegetable Platter</option>
+                                    <option value="Fruit Platter">Fruit Platter</option>
+                                    <option value="Breadsticks">Breadsticks</option>
+                                    <option value="Bruschetta">Bruschetta</option>
+                                    <option value="Mini Quiches">Mini Quiches</option>
+                                    <option value="Spring Rolls">Spring Rolls</option>
+                                    <option value="Stuffed Mushrooms">Stuffed Mushrooms</option>
+                                </select>
+                                {index > 0 && <button onClick={() => removeOption(index, 'appetiser')}>Remove</button>}
+                            </div>
+                        ))}
+                        <button className='button' onClick={() => addOption('appetiser')}>Add Appetiser</button>
 
-                        <select
-                            onChange={handleChange}
-                            value={input.freebies}
-                            name="freebies"
-                        >
-                            <option value="">Select Freebies</option>
-                            <option value="Assorted Drinks">Assorted Drinks</option>
-                            <option value="Tea Coffee">Tea / Coffee</option>
-                            <option value="Gravy">Gravy</option>
-                            <option value="Petit">Petit Cake</option>
-                            <option value="Extra Salad">Extra Salad</option>
-                        </select>
-                        <input
-                            onChange={handleChange}
-                            value={input.cost}
-                            name="cost"
-                            type="number"
-                            placeholder="Enter $ cost"
-                        />
+                        {/* Freebies Selection */}
+                        {input.freebies.map((freebie, index) => (
+                            <div key={index} className="multi-input-row">
+                                <select onChange={(e) => handleChange(e, index, 'freebies')} value={freebie}>
+                                    <option value="">Select Freebies</option>
+                                    <option value="Water">Water</option>
+                                    <option value="Soft Drinks">Soft Drinks</option>
+                                    <option value="Napkins">Napkins</option>
+                                    <option value="Plastic Cutlery">Plastic Cutlery</option>
+                                    <option value="Sauces">Sauces</option>
+                                    <option value="Condiments">Condiments</option>
+                                </select>
+                                {index > 0 && <button onClick={() => removeOption(index, 'freebies')}>Remove</button>}
+                            </div>
+                        ))}
+                        <button className='button' onClick={() => addOption('freebies')}>Add Freebie</button>
                     </div>
-                </div>
-
-                <div className='row'>
-                    <h1>Particulars</h1>
-                    <textarea
-                        value={input.textValue}
-                        name='textValue'
-                        onChange={handleChange}
-                        placeholder="Enter your text here"
-                        rows="4"
-                        cols="50"
-                    />
                 </div>
             </div>
 
-            <button className='btn-primary' onClick={handleSave}>Download</button>
+            <button className='download' onClick={handleSave}>Download</button>
             <button className='btn-secondary' onClick={handleQuote}>Create Quote</button>
 
             {sausageSizzle && (
