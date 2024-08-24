@@ -219,8 +219,12 @@ export default function Detail() {
                     <div className="column">
                         {/* Bread Selection */}
                         {input.bread.map((bread, index) => (
-                            <div key={index} className="multi-input-row">
-                                <select onChange={(e) => handleChange(e, index, 'bread')} value={bread}>
+                            <div key={index} className="multi-input-row flex items-center space-x-2">
+                                <select
+                                    onChange={(e) => handleChange(e, index, 'bread')}
+                                    value={bread}
+                                    className="flex-grow"
+                                >
                                     <option value="">Select Bread Type</option>
                                     <option value="Dinner roll">Dinner roll</option>
                                     <option value="Damper roll">Damper roll</option>
@@ -230,15 +234,35 @@ export default function Detail() {
                                     <option value="Pita bread">Pita bread</option>
                                     <option value="Sliced bread">Sliced bread</option>
                                 </select>
-                                {index > 0 && <button onClick={() => removeOption(index, 'bread')}>Remove</button>}
+                                {index > 0 && (
+                                    <button
+                                        className="bg-red-300 p-2 rounded-md"
+                                        onClick={() => removeOption(index, 'bread')}
+                                    >
+                                        Remove
+                                    </button>
+                                )}
                             </div>
                         ))}
-                        <button className='button' onClick={() => addOption('bread')}>Add Bread</button>
+
+                        <div className="flex justify-center mt-4">
+                            <button
+                                className="bg-green-300 w-max p-2 rounded-md "
+                                onClick={() => addOption('bread')}
+                            >
+                                Add Bread
+                            </button>
+                        </div>
+
 
                         {/* Pumpkin Selection */}
                         {input.pumpkin.map((pumpkin, index) => (
-                            <div key={index} className="multi-input-row">
-                                <select onChange={(e) => handleChange(e, index, 'pumpkin')} value={pumpkin}>
+                            <div key={index} className="multi-input-row flex items-center space-x-2">
+                                <select
+                                    onChange={(e) => handleChange(e, index, 'pumpkin')}
+                                    value={pumpkin}
+                                    className="flex-grow p-2 border rounded-md"
+                                >
                                     <option value="">Select Pumpkin Size</option>
                                     <option value="1 Pumpkin Large">1 Pumpkin large</option>
                                     <option value="2 Pumpkin Large">2 Pumpkin large</option>
@@ -248,35 +272,74 @@ export default function Detail() {
                                     <option value="2 Pumpkin Medium">2 Pumpkin medium</option>
                                     <option value="3 Pumpkin Medium">3 Pumpkin medium</option>
                                 </select>
-                                {index > 0 && <button onClick={() => removeOption(index, 'pumpkin')}>Remove</button>}
+                                {index > 0 && (
+                                    <button
+                                        className="bg-red-300 p-2 rounded-md"
+                                        onClick={() => removeOption(index, 'pumpkin')}
+                                    >
+                                        Remove
+                                    </button>
+                                )}
                             </div>
                         ))}
-                        <button className='button' onClick={() => addOption('pumpkin')}>Add Pumpkin</button>
+
+                        <div className="flex justify-center mt-4">
+                            <button
+                                className="bg-green-300 w-max p-2 rounded-md"
+                                onClick={() => addOption('pumpkin')}
+                            >
+                                Add Pumpkin
+                            </button>
+                        </div>
+
 
                         {/* Sidings Selection */}
                         {input.sidings.map((siding, index) => (
-                            <div key={index} className="multi-input-row">
-                                <select onChange={(e) => handleChange(e, index, 'sidings')} value={siding}>
+                            <div key={index} className="multi-input-row flex items-center space-x-2">
+                                <select
+                                    onChange={(e) => handleChange(e, index, 'sidings')}
+                                    value={siding}
+                                    className="flex-grow p-2 border rounded-md"
+                                >
                                     <option value="">Select Sidings</option>
                                     <option value="Mashed Potatoes">Mashed Potatoes</option>
                                     <option value="Steamed Veggies">Steamed Veggies</option>
                                     <option value="Grilled Corn">Grilled Corn</option>
                                     <option value="Jacket Potatoes">Jacket Potatoes</option>
                                     <option value="Sliced Onion">Sliced Onion</option>
-                                    <option value="Sigwarm Potatoes">Sig Warm Potatoes</option>
+                                    <option value="Sig Warm Potatoes">Sig Warm Potatoes</option>
                                     <option value="BBQ Baked Potatoes">BBQ Baked Potatoes</option>
                                     <option value="Pea / Carrot / Corn">Pea/Carrot/Corn</option>
                                     <option value="Steamed Potatoes">Steamed Potatoes</option>
                                 </select>
-                                {index > 0 && <button onClick={() => removeOption(index, 'sidings')}>Remove</button>}
+                                {index > 0 && (
+                                    <button
+                                        className="bg-red-300 p-2 rounded-md"
+                                        onClick={() => removeOption(index, 'sidings')}
+                                    >
+                                        Remove
+                                    </button>
+                                )}
                             </div>
                         ))}
-                        <button className='button' onClick={() => addOption('sidings')}>Add Sidings</button>
+
+                        <div className="flex justify-center mt-4">
+                            <button
+                                className="bg-green-300 w-max p-2 rounded-md"
+                                onClick={() => addOption('sidings')}
+                            >
+                                Add Sidings
+                            </button>
+                        </div>
 
                         {/* Meats Selection */}
                         {input.meats.map((meat, index) => (
-                            <div key={index} className="multi-input-row">
-                                <select onChange={(e) => handleChange(e, index, 'meats')} value={meat}>
+                            <div key={index} className="multi-input-row flex items-center space-x-2">
+                                <select
+                                    onChange={(e) => handleChange(e, index, 'meats')}
+                                    value={meat}
+                                    className="flex-grow p-2 border rounded-md"
+                                >
                                     <option value="">Select Meat Type</option>
                                     <option value="Beef Steak">Beef Steak</option>
                                     <option value="Lamb Chops">Lamb Chops</option>
@@ -287,15 +350,35 @@ export default function Detail() {
                                     <option value="Chicken Wings">Chicken Wings</option>
                                     <option value="Lamb Ribs">Lamb Ribs</option>
                                 </select>
-                                {index > 0 && <button onClick={() => removeOption(index, 'meats')}>Remove</button>}
+                                {index > 0 && (
+                                    <button
+                                        className="bg-red-300 p-2 rounded-md"
+                                        onClick={() => removeOption(index, 'meats')}
+                                    >
+                                        Remove
+                                    </button>
+                                )}
                             </div>
                         ))}
-                        <button className='button' onClick={() => addOption('meats')}>Add Meat</button>
+
+                        <div className="flex justify-center mt-4">
+                            <button
+                                className="bg-green-300 w-max p-2 rounded-md"
+                                onClick={() => addOption('meats')}
+                            >
+                                Add Meat
+                            </button>
+                        </div>
+
 
                         {/* Salad Selection */}
                         {input.salad.map((salad, index) => (
-                            <div key={index} className="multi-input-row">
-                                <select onChange={(e) => handleChange(e, index, 'salad')} value={salad}>
+                            <div key={index} className="multi-input-row flex items-center space-x-2">
+                                <select
+                                    onChange={(e) => handleChange(e, index, 'salad')}
+                                    value={salad}
+                                    className="flex-grow p-2 border rounded-md"
+                                >
                                     <option value="">Select Salad Type</option>
                                     <option value="Greek Salad">Greek Salad</option>
                                     <option value="Caesar Salad">Caesar Salad</option>
@@ -305,15 +388,34 @@ export default function Detail() {
                                     <option value="Coleslaw">Coleslaw</option>
                                     <option value="Fruit Salad">Fruit Salad</option>
                                 </select>
-                                {index > 0 && <button onClick={() => removeOption(index, 'salad')}>Remove</button>}
+                                {index > 0 && (
+                                    <button
+                                        className="bg-red-300 p-2 rounded-md"
+                                        onClick={() => removeOption(index, 'salad')}
+                                    >
+                                        Remove
+                                    </button>
+                                )}
                             </div>
                         ))}
-                        <button className='button' onClick={() => addOption('salad')}>Add Salad</button>
+
+                        <div className="flex justify-center mt-4">
+                            <button
+                                className="bg-green-300 w-max p-2 rounded-md"
+                                onClick={() => addOption('salad')}
+                            >
+                                Add Salad
+                            </button>
+                        </div>
 
                         {/* Appetiser Selection */}
                         {input.appetiser.map((appetiser, index) => (
-                            <div key={index} className="multi-input-row">
-                                <select onChange={(e) => handleChange(e, index, 'appetiser')} value={appetiser}>
+                            <div key={index} className="multi-input-row flex items-center space-x-2">
+                                <select
+                                    onChange={(e) => handleChange(e, index, 'appetiser')}
+                                    value={appetiser}
+                                    className="flex-grow p-2 border rounded-md"
+                                >
                                     <option value="">Select Appetiser Type</option>
                                     <option value="Cheese Platter">Cheese Platter</option>
                                     <option value="Vegetable Platter">Vegetable Platter</option>
@@ -324,15 +426,35 @@ export default function Detail() {
                                     <option value="Spring Rolls">Spring Rolls</option>
                                     <option value="Stuffed Mushrooms">Stuffed Mushrooms</option>
                                 </select>
-                                {index > 0 && <button onClick={() => removeOption(index, 'appetiser')}>Remove</button>}
+                                {index > 0 && (
+                                    <button
+                                        className="bg-red-300 p-2 rounded-md"
+                                        onClick={() => removeOption(index, 'appetiser')}
+                                    >
+                                        Remove
+                                    </button>
+                                )}
                             </div>
                         ))}
-                        <button className='button' onClick={() => addOption('appetiser')}>Add Appetiser</button>
+
+                        <div className="flex justify-center mt-4">
+                            <button
+                                className="bg-green-300 w-max p-2 rounded-md "
+                                onClick={() => addOption('appetiser')}
+                            >
+                                Add Appetiser
+                            </button>
+                        </div>
+
 
                         {/* Freebies Selection */}
                         {input.freebies.map((freebie, index) => (
-                            <div key={index} className="multi-input-row">
-                                <select onChange={(e) => handleChange(e, index, 'freebies')} value={freebie}>
+                            <div key={index} className="multi-input-row flex items-center space-x-2">
+                                <select
+                                    onChange={(e) => handleChange(e, index, 'freebies')}
+                                    value={freebie}
+                                    className="flex-grow p-2 border rounded-md"
+                                >
                                     <option value="">Select Freebies</option>
                                     <option value="Water">Water</option>
                                     <option value="Soft Drinks">Soft Drinks</option>
@@ -341,10 +463,25 @@ export default function Detail() {
                                     <option value="Sauces">Sauces</option>
                                     <option value="Condiments">Condiments</option>
                                 </select>
-                                {index > 0 && <button onClick={() => removeOption(index, 'freebies')}>Remove</button>}
+                                {index > 0 && (
+                                    <button
+                                        className="bg-red-300 p-2 rounded-md"
+                                        onClick={() => removeOption(index, 'freebies')}
+                                    >
+                                        Remove
+                                    </button>
+                                )}
                             </div>
                         ))}
-                        <button className='button' onClick={() => addOption('freebies')}>Add Freebie</button>
+
+                        <div className="flex justify-center mt-4">
+                            <button
+                                className="bg-green-300 p-2 rounded-md"
+                                onClick={() => addOption('freebies')}
+                            >
+                                Add Freebie
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
