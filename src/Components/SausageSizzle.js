@@ -63,7 +63,7 @@ export default function SausageSizzle({ textValue, name, bread, pumpkin, meats, 
 
                     <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '40px 0' }} />
 
-                    <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Extras</p>
+                    <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Freebies</p>
                     <p style={{ textAlign: 'center' }}>{freebies}</p>
                     <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Additional Notes</p>
                     <p style={{ textAlign: 'center' }}>{textValue}</p>

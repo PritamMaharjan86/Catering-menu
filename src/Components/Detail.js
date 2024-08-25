@@ -211,6 +211,13 @@ export default function Detail() {
                             type="text"
                             placeholder="How did customer find you?"
                         />
+                        <input
+                            onChange={handleChange}
+                            value={input.cost}
+                            name="cost"
+                            type="number"
+                            placeholder="Enter $ cost"
+                        />
                     </div>
                 </div>
 
@@ -482,6 +489,19 @@ export default function Detail() {
                                 Add Freebie
                             </button>
                         </div>
+
+
+                    </div>
+                    <div className='row'>
+                        <h1>Additional Notes</h1>
+                        <textarea
+                            value={input.textValue}
+                            name='textValue'
+                            onChange={handleChange}
+                            placeholder="Enter your text here"
+                            rows="4"
+                            cols="50"
+                        />
                     </div>
                 </div>
             </div>
