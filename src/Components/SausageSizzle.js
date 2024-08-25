@@ -54,19 +54,19 @@ export default function SausageSizzle({ textValue, name, bread, pumpkin, meats, 
                         <p><strong>Meats:</strong> {meats}</p>
                         <p><strong>Sidings:</strong> {sidings}</p>
                         <p><strong>Appetiser:</strong> {appetiser}</p>
-                        <p><strong>Salad:</strong> {salad}</p>
+                        <p><strong>Salad:</strong> {salad}</p> <br />
                         <p><strong>Chef Service:</strong> Your own personal chef to setup, cook, carve and serve</p>
                     </div>
 
                     <p style={{ textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}>TOTAL: <span style={{ color: '#d9534f' }}>${cost} </span> (GST Inclusive)</p>
-                    <p style={{textAlign:'center', fontStyle:'italic', textDecoration:'underline'}}> Note: 2.3% surcharge will apply for credit card payment.</p>
+                    <p style={{ textAlign: 'center', fontStyle: 'italic', textDecoration: 'underline' }}> Note: 2.3% surcharge will apply for credit card payment.</p>
 
                     <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '40px 0' }} />
 
                     <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Freebies</p>
-                    <p style={{ textAlign: 'center' }}>{freebies}</p>
+                    <p style={{ textAlign: 'center' }}>{freebies}</p> <br />
                     <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Additional Notes</p>
-                    <p style={{ textAlign: 'center' }}>{textValue}</p>
+                    <p style={{ textAlign: 'center' }}>{textValue}</p><br />
                     <p style={{ textAlign: 'center' }}>Our chef will cook and serve the juicy Barbecue Sizzle to your guests, adding their own personal touch on the night. Your guests will not only leave your party with a belly full of great food, but also feeling satisfied that their meal was really looked after.</p>
 
                     <p style={{ textAlign: 'center' }}>If you have any questions, please feel free to call or email. I look forward to hearing from you soon.</p>
@@ -77,7 +77,7 @@ export default function SausageSizzle({ textValue, name, bread, pumpkin, meats, 
 
                 <img style={{ width: '100%', borderTop: '2px solid #555', height: 'auto' }} src='https://res.cloudinary.com/dedpvue13/image/upload/v1723893361/Barbehaus-letterhead_2_iwp0mv.png' alt="Barbehaus Letterhead" />
             </div>
-            <button className='btn-primary' onClick={handleDownload}>Download</button>
+            <button className='border-2 rounded-md p-1 mt-5 bg-blue-500 text-white mx-auto block mb-10' onClick={handleDownload}>Download</button>
         </div >
     );
 }
