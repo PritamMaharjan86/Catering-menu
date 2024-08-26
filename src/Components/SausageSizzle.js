@@ -49,12 +49,12 @@ export default function SausageSizzle({ textValue, name, bread, pumpkin, meats, 
                     <p style={{ textAlign: 'center', fontSize: '25px', fontWeight: 'bold', textDecoration: 'underline', margin: '40px 0' }}>BBQ Sizzle Package for {number} Guests</p>
 
                     <div style={{ margin: '20px 0', paddingLeft: '20px', textAlign: 'center' }}>
-                        <p><strong>Bread:</strong> {bread}</p>
-                        <p><strong>Pumpkin:</strong> {pumpkin}</p>
-                        <p><strong>Meats:</strong> {meats}</p>
-                        <p><strong>Sidings:</strong> {sidings}</p>
-                        <p><strong>Appetiser:</strong> {appetiser}</p>
-                        <p><strong>Salad:</strong> {salad}</p> <br />
+                        <p><strong>Bread:</strong> {bread.join(', ')}</p>
+                        <p><strong>Pumpkin:</strong> {pumpkin.join(', ')}</p>
+                        <p><strong>Meats:</strong> {meats.join(', ')}</p>
+                        <p><strong>Sidings:</strong> {sidings.join(', ')}</p>
+                        <p><strong>Appetiser:</strong> {appetiser.join(', ')}</p>
+                        <p><strong>Salad:</strong> {salad.join(', ')}</p> <br />
                         <p><strong>Chef Service:</strong> Your own personal chef to setup, cook, carve and serve</p>
                     </div>
 
@@ -64,7 +64,7 @@ export default function SausageSizzle({ textValue, name, bread, pumpkin, meats, 
                     <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '40px 0' }} />
 
                     <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Freebies</p>
-                    <p style={{ textAlign: 'center' }}>{freebies}</p> <br />
+                    <p style={{ textAlign: 'center' }}>{freebies.join(', ')}</p> <br />
                     <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Additional Notes</p>
                     <p style={{ textAlign: 'center' }}>{textValue}</p><br />
                     <p style={{ textAlign: 'center' }}>Our chef will cook and serve the juicy Barbecue Sizzle to your guests, adding their own personal touch on the night. Your guests will not only leave your party with a belly full of great food, but also feeling satisfied that their meal was really looked after.</p>

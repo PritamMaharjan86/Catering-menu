@@ -4,10 +4,7 @@ import { saveAs } from 'file-saver';
 export default function MeatOnly({ textValue, name, bread, pumpkin, meats, sidings, appetiser, salad, freebies, cost, functionDate, number }) {
 
     const handleDownload = () => {
-        // Get the content of the div
         const content = document.getElementById('quotation-content').innerHTML;
-
-        // Wrap content in a full HTML structure to be saved as .doc
         const htmlContent = `
             <html>
             <head>
@@ -29,11 +26,7 @@ export default function MeatOnly({ textValue, name, bread, pumpkin, meats, sidin
             </body>
             </html>
         `;
-
-        // Create a Blob with the HTML content and set MIME type to application/msword
         const blob = new Blob(['\ufeff', htmlContent], { type: 'application/msword' });
-
-        // Trigger the download
         saveAs(blob, 'quotation.doc');
     };
 
@@ -50,12 +43,12 @@ export default function MeatOnly({ textValue, name, bread, pumpkin, meats, sidin
                     <p style={{ textAlign: 'center', fontSize: '25px', fontWeight: 'bold', textDecoration: 'underline', margin: '40px 0' }}>Chef and Meat Package for {number} Guests</p>
 
                     <div style={{ margin: '20px 0', paddingLeft: '20px', textAlign: 'center' }}>
-                        <p><strong>Bread:</strong> {bread}</p>
-                        <p><strong>Pumpkin:</strong> {pumpkin}</p>
-                        <p><strong>Meats:</strong> {meats}</p>
-                        <p><strong>Sidings:</strong> {sidings}</p>
-                        <p><strong>Appetiser:</strong> {appetiser}</p>
-                        <p><strong>Salad:</strong> {salad}</p>
+                        <p><strong>Bread:</strong> {bread.join(', ')}</p>
+                        <p><strong>Pumpkin:</strong> {pumpkin.join(', ')}</p>
+                        <p><strong>Meats:</strong> {meats.join(', ')}</p>
+                        <p><strong>Sidings:</strong> {sidings.join(', ')}</p>
+                        <p><strong>Appetiser:</strong> {appetiser.join(', ')}</p>
+                        <p><strong>Salad:</strong> {salad.join(', ')}</p>
                         <br />
                         <p style={{ textAlign: 'center' }}><strong>Chef Service:</strong> Your own personal chef to setup, cook, carve and serve</p>
                     </div>
@@ -66,7 +59,7 @@ export default function MeatOnly({ textValue, name, bread, pumpkin, meats, sidin
                     <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '40px 0' }} />
 
                     <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Freebies</p>
-                    <p style={{ textAlign: 'center' }}>{freebies}</p> <br />
+                    <p style={{ textAlign: 'center' }}>{freebies.join(', ')}</p> <br />
 
                     <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Additional Notes</p>
                     <p style={{ textAlign: 'center' }}>{textValue}</p> <br />
