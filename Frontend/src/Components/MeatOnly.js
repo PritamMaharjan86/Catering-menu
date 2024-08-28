@@ -64,10 +64,10 @@ export default function MeatOnly({ textValue, name, bread, pumpkin, meats, sidin
                     <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Additional Notes</p>
                     <p style={{ textAlign: 'center' }}>{textValue}</p> <br />
 
-                    <p>Your chef will arrive 5 hours before eating time. A source of power will be needed.</p>
-                    <p>Our chef will cook and serve the juicy Barbecue Sizzle to your guests, adding their own personal touch on the night. Your guests will not only leave your party with a belly full of great food, but also feeling satisfied that their meal was really looked after.</p>
+                    <p style={{ textAlign: 'center' }}>Your chef will arrive 5 hours before eating time. A source of power will be needed.</p>
+                    <p style={{ textAlign: 'center' }}>Our chef will cook and serve the juicy Barbecue Sizzle to your guests, adding their own personal touch on the night. Your guests will not only leave your party with a belly full of great food, but also feeling satisfied that their meal was really looked after.</p>
 
-                    <p>If you have any questions, please feel free to call or email. I look forward to hearing from you soon.</p>
+                    <p style={{ textAlign: 'center' }}>If you have any questions, please feel free to call or email. I look forward to hearing from you soon.</p>
 
                     <p style={{ marginTop: '60px' }}>Kind regards,</p>
                     <p>Geofrey Oliva - Manager</p> <br />
