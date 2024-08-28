@@ -83,7 +83,7 @@ export default function Detail() {
                 ...input,
                 [name]: formatPhoneNumber(value),
             };
-        } 
+        }
         else if (index !== null && category !== null) {
             const newValues = [...input[category]];
             newValues[index] = capitalizedValue;
@@ -240,64 +240,7 @@ export default function Detail() {
                             type="text"
                             placeholder="How did customer find you?"
                         />
-                        <div style={{ position: 'relative' }}>
-                            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>$</span>
-                            <input
-                                onChange={handleChange}
-                                value={input.staffFee}
-                                name="staffFee"
-                                type="number"
-                                placeholder="  Enter staff fee"
-                                style={{ paddingLeft: '20px' }} // Adjust padding to make room for the dollar sign
-                            />
-                        </div>
-                        <div style={{ position: 'relative' }}>
-                            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>$</span>
-                            <input
-                                onChange={handleChange}
-                                value={input.discount}
-                                name="discount"
-                                type="number"
-                                placeholder="  Enter discount"
-                                style={{ paddingLeft: '20px' }} // Adjust padding to make room for the dollar sign
-                            />
-                        </div>
 
-                        <div style={{ position: 'relative' }}>
-                            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>$</span>
-                            <input
-                                onChange={handleChange}
-                                value={input.cost}
-                                name="cost"
-                                type="number"
-                                placeholder="  Enter cost"
-                                style={{ paddingLeft: '20px' }} // Adjust padding to make room for the dollar sign
-                            />
-                        </div>
-
-                        <div style={{ position: 'relative' }}>
-                            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>$</span>
-                            <input
-                                onChange={handleChange}
-                                value={input.gst}
-                                name="gst"
-                                type="number"
-                                placeholder="  Enter GST"
-                                style={{ paddingLeft: '20px' }} // Adjust padding to make room for the dollar sign
-                            />
-                        </div>
-                        <div style={{ position: 'relative' }}>
-                            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>$</span>
-                            <input
-                                readOnly
-                                onChange={handleChange}
-                                value={(Number(input.discount) || 0) + (Number(input.staffFee) || 0)}
-                                name="total"
-                                type="number"
-                                placeholder=" Total"
-                                style={{ paddingLeft: '20px' }} // Adjust padding to make room for the dollar sign
-                            />
-                        </div>
 
                     </div>
                 </div>
@@ -582,17 +525,85 @@ export default function Detail() {
 
 
                     </div>
-                    <div className='row'>
-                        <h1>Additional Notes</h1>
-                        <textarea
-                            value={input.textValue}
-                            name='textValue'
-                            onChange={handleChange}
-                            placeholder="Enter your text here"
-                            rows="4"
-                            cols="50"
-                        />
+
+                </div>
+
+                <div className="row">
+                    <h1>Costing Detail</h1>
+                    <div className="column">
+
+                        <div style={{ position: 'relative' }}>
+                            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>$</span>
+                            <input
+                                onChange={handleChange}
+                                value={input.staffFee}
+                                name="staffFee"
+                                type="number"
+                                placeholder="  Enter staff fee"
+                                style={{ paddingLeft: '20px' }} // Adjust padding to make room for the dollar sign
+                            />
+                        </div>
+
+                        <div style={{ position: 'relative' }}>
+                            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>$</span>
+                            <input
+                                onChange={handleChange}
+                                value={input.cost}
+                                name="cost"
+                                type="number"
+                                placeholder="  Enter cost"
+                                style={{ paddingLeft: '20px' }} // Adjust padding to make room for the dollar sign
+                            />
+                        </div>
+
+                        <div style={{ position: 'relative' }}>
+                            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>$</span>
+                            <input
+                                onChange={handleChange}
+                                value={input.gst}
+                                name="gst"
+                                type="number"
+                                placeholder="  Enter GST"
+                                style={{ paddingLeft: '20px' }} // Adjust padding to make room for the dollar sign
+                            />
+                        </div>
+
+                        <div style={{ position: 'relative' }}>
+                            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}> $ -</span>
+                            <input
+                                onChange={handleChange}
+                                value={input.discount}
+                                name="discount"
+                                type="number"
+                                placeholder="  Enter discount"
+                                style={{ paddingLeft: '32px' }} // Adjust padding to make room for the dollar sign
+                            />
+                        </div>
+
+
+                        <div style={{ position: 'relative' }}>
+                            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>$</span>
+                            <input
+                                readOnly
+                                value={(Number(input.gst)) + (Number(input.staffFee)) + (Number(input.cost)) - (Number(input.discount))}
+                                name="total"
+                                type="number"
+                                placeholder=" Total"
+                                style={{ paddingLeft: '20px' }} // Adjust padding to make room for the dollar sign
+                            />
+                        </div>
                     </div>
+                </div>
+                <div className='row'>
+                    <h1>Additional Notes</h1>
+                    <textarea
+                        value={input.textValue}
+                        name='textValue'
+                        onChange={handleChange}
+                        placeholder="Enter your text here"
+                        rows="4"
+                        cols="50"
+                    />
                 </div>
             </div>
 
@@ -609,7 +620,7 @@ export default function Detail() {
                     appetiser={input.appetiser}
                     salad={input.salad}
                     freebies={input.freebies}
-                    cost={input.cost}
+                    total={(Number(input.gst)) + (Number(input.staffFee)) + (Number(input.cost)) - (Number(input.discount))}
                     functionDate={input.functionDate}
                     number={input.guestNo}
                     textValue={input.textValue}
@@ -626,7 +637,7 @@ export default function Detail() {
                     appetiser={input.appetiser}
                     salad={input.salad}
                     freebies={input.freebies}
-                    cost={input.cost}
+                    total={(Number(input.gst)) + (Number(input.staffFee)) + (Number(input.cost)) - (Number(input.discount))}
                     functionDate={input.functionDate}
                     number={input.guestNo}
                     textValue={input.textValue}

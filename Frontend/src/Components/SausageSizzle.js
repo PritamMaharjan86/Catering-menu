@@ -1,7 +1,7 @@
 import React from 'react';
 import { saveAs } from 'file-saver';
 
-export default function SausageSizzle({ textValue, name, bread, pumpkin, meats, sidings, appetiser, salad, freebies, cost, functionDate, number }) {
+export default function SausageSizzle({ textValue, name, bread, pumpkin, meats, sidings, appetiser, salad, freebies, total, functionDate, number }) {
 
     const handleDownload = () => {
         // Get the content of the div
@@ -58,7 +58,7 @@ export default function SausageSizzle({ textValue, name, bread, pumpkin, meats, 
                         <p><strong>Chef Service:</strong> Your own personal chef to setup, cook, carve and serve</p>
                     </div>
 
-                    <p style={{ textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}>TOTAL: <span style={{ color: '#d9534f' }}>${cost} </span> (GST Inclusive)</p>
+                    <p style={{ textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}>TOTAL: <span style={{ color: '#d9534f' }}>${total} </span> (GST Inclusive)</p>
                     <p style={{ textAlign: 'center', fontStyle: 'italic', textDecoration: 'underline' }}> Note: 2.3% surcharge will apply for credit card payment.</p>
 
                     <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '40px 0' }} />
