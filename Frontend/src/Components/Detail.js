@@ -459,7 +459,7 @@ export default function Detail() {
                                     value={salad}
                                     name={`salad-${index}`}
                                     fullWidth
-                                    placeholder="Enter Salad Type"
+                                    label="Enter Salad Type"
                                 />
 
                                 {index > 0 && (
