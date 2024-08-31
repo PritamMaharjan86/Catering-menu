@@ -11,7 +11,12 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import { IconButton} from '@mui/material';
+import Button from '@mui/material/Button';
+import Download from '@mui/icons-material/Download';
+import Create from '@mui/icons-material/Create';
+
+
+import { IconButton } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
 
 
@@ -641,8 +646,17 @@ export default function Detail() {
                 </div>
             </div>
 
-            <button className='border-2 rounded-md p-2 mt-5 bg-green-300 mx-auto block' onClick={handleSave} disabled={!isFormValid}>Download</button>
-            <button className='border-2 rounded-md p-2 mt-5 bg-blue-300 mx-auto block mb-10' onClick={handleQuote} disabled={!isFormValid}>Create Quote</button>
+            <div className='flex justify-center items-center gap-2 mb-10'>
+
+                <Button  variant="outlined" startIcon={<Download />} onClick={handleSave} disabled={!isFormValid}>
+                    Download
+                </Button>
+
+                <Button variant="outlined" startIcon={<Create />} onClick={handleQuote} disabled={!isFormValid}>
+                    Create Quote
+                </Button>
+
+            </div>
 
             {sausageSizzle && (
                 <SausageSizzle
