@@ -10,14 +10,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-
+import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Download from '@mui/icons-material/Download';
 import Create from '@mui/icons-material/Create';
 
 
 import { IconButton } from '@mui/material';
-import { Add, Remove } from '@mui/icons-material';
+import { Add } from '@mui/icons-material';
 
 
 export default function Detail() {
@@ -315,7 +315,7 @@ export default function Detail() {
                                         color="error"
                                         onClick={() => removeOption(index, 'bread')}
                                     >
-                                        <Remove />
+                                        <DeleteIcon />
                                     </IconButton>
                                 )}
 
@@ -356,7 +356,7 @@ export default function Detail() {
                                         color="error"
                                         onClick={() => removeOption(index, 'pumpkin')}
                                     >
-                                        <Remove />
+                                        <DeleteIcon />
                                     </IconButton>
                                 )}
 
@@ -399,7 +399,7 @@ export default function Detail() {
                                         color="error"
                                         onClick={() => removeOption(index, 'sidings')}
                                     >
-                                        <Remove />
+                                        <DeleteIcon />
                                     </IconButton>
                                 )}
 
@@ -441,7 +441,7 @@ export default function Detail() {
                                         color="error"
                                         onClick={() => removeOption(index, 'meats')}
                                     >
-                                        <Remove />
+                                        <DeleteIcon />
                                     </IconButton>
                                 )}
 
@@ -472,7 +472,7 @@ export default function Detail() {
                                         color="error"
                                         onClick={() => removeOption(index, 'salad')}
                                     >
-                                        <Remove />
+                                        <DeleteIcon />
                                     </IconButton>
                                 )}
 
@@ -514,7 +514,7 @@ export default function Detail() {
                                         color="error"
                                         onClick={() => removeOption(index, 'appetiser')}
                                     >
-                                        <Remove />
+                                        <DeleteIcon />
                                     </IconButton>
                                 )}
 
@@ -554,7 +554,7 @@ export default function Detail() {
                                         color="error"
                                         onClick={() => removeOption(index, 'freebies')}
                                     >
-                                        <Remove />
+                                        <DeleteIcon />
                                     </IconButton>
                                 )}
 
@@ -648,11 +648,11 @@ export default function Detail() {
 
             <div className='flex justify-center items-center gap-2 mb-10'>
 
-                <Button  variant="outlined" startIcon={<Download />} onClick={handleSave} disabled={!isFormValid}>
+                <Button color='success' variant="outlined" startIcon={<Download />} onClick={handleSave} disabled={!isFormValid}>
                     Download
                 </Button>
 
-                <Button variant="outlined" startIcon={<Create />} onClick={handleQuote} disabled={!isFormValid}>
+                <Button color='warning' variant="outlined" startIcon={<Create />} onClick={handleQuote} disabled={!isFormValid}>
                     Create Quote
                 </Button>
 
