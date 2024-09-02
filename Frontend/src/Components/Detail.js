@@ -76,10 +76,10 @@ export default function Detail() {
     };
 
     const validateForm = (updatedInput) => {
-        const { phNumber, meats, bread, pumpkin, sidings, salad, appetiser } = updatedInput;
+        const {name, email, total, menu, guestNo, phNumber, meats, bread, pumpkin, sidings, salad, appetiser } = updatedInput;
 
 
-        const allFieldsFilled = phNumber &&
+        const allFieldsFilled = phNumber && name && email && total && menu && guestNo &&
             meats.every((item) => item.trim() !== '') &&
             bread.every((item) => item.trim() !== '') &&
             pumpkin.every((item) => item.trim() !== '') &&
@@ -221,7 +221,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="Email" variant="outlined" onChange={handleChange} value={input.email} type='text' name='email' />
+                        <TextField id="outlined-basic" label="Email" variant="outlined" onChange={handleChange} value={input.email} type='text' name='email' required />
 
 
                         <Box sx={{ minWidth: 120 }}>
@@ -273,6 +273,7 @@ export default function Detail() {
                                     value={input.menu}
                                     label="Select Menu Type"
                                     onChange={handleChange}
+                                    required
                                 >
                                     <MenuItem value='BBHSausageSizzle'>BBH Sausage Sizzle</MenuItem>
                                     <MenuItem value='BBHMeatOnly'>BBH Meat Only</MenuItem>
@@ -317,6 +318,7 @@ export default function Detail() {
                                         onChange={(e) => handleChange(e, index, 'bread')}
                                         value={bread}
                                         label="Select Bread Type"
+
                                     >
                                         <MenuItem value="">Select Bread Type</MenuItem>
                                         <MenuItem value="Dinner roll">Dinner roll</MenuItem>
@@ -601,7 +603,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="Staff fee" variant="outlined" onChange={handleChange} value={input.staffFee} type='number' name='staffFee' required InputProps={{
+                        <TextField id="outlined-basic" label="Staff fee" variant="outlined" onChange={handleChange} value={input.staffFee} type='number' name='staffFee'  InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
@@ -611,7 +613,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="Cost" variant="outlined" onChange={handleChange} value={input.cost} type='number' name='cost' required InputProps={{
+                        <TextField id="outlined-basic" label="Cost" variant="outlined" onChange={handleChange} value={input.cost} type='number' name='cost'  InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
@@ -622,7 +624,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="GST" variant="outlined" onChange={handleChange} value={input.gst} type='number' name='gst' required InputProps={{
+                        <TextField id="outlined-basic" label="GST" variant="outlined" onChange={handleChange} value={input.gst} type='number' name='gst'  InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
@@ -632,7 +634,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="Discount" variant="outlined" onChange={handleChange} value={input.discount} type='number' name='discount' required InputProps={{
+                        <TextField id="outlined-basic" label="Discount" variant="outlined" onChange={handleChange} value={input.discount} type='number' name='discount'  InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
@@ -665,7 +667,7 @@ export default function Detail() {
                 </div>
             </div>
 
-            <span className='flex justify-center items-center gap-2 mb-10 text-red-500'>All the fields are required to be filled.</span>
+            <span className='flex justify-center items-center gap-2 mb-10 text-red-500 italic underline'>* fields are required to be filled.</span>
             <div className='flex justify-center items-center gap-2 mb-10'>
                 <Button color='success' variant="outlined" startIcon={<Download />} onClick={handleSave} disabled={!isFormValid}>
                     Download
