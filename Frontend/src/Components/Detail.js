@@ -4,6 +4,7 @@ import '../Detail.css';
 import SausageSizzle from './SausageSizzle';
 import MeatOnly from './MeatOnly';
 import ThreeCourseMeal from './ThreeCourseMeal';
+import TwoCourseMeal from './TwoCourseMeal';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -63,6 +64,7 @@ export default function Detail() {
     const [sausageSizzle, setSausageSizzle] = useState(false);
     const [meatonly, setMeatonly] = useState(false);
     const [threecoursemeal, setThreecoursemeal] = useState(false);
+    const [twocoursemeal, setTwocoursemeal] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
 
 
@@ -152,12 +154,20 @@ export default function Detail() {
             setSausageSizzle(true);
             setMeatonly(false);
             setThreecoursemeal(false);
+            setTwocoursemeal(false);
         } else if (input.menu === 'BBHMeatOnly') {
             setSausageSizzle(false);
             setThreecoursemeal(false);
+            setTwocoursemeal(false);
             setMeatonly(true);
         } else if (input.menu === 'ThreeCourseMeal') {
             setThreecoursemeal(true);
+            setMeatonly(false);
+            setSausageSizzle(false);
+            setTwocoursemeal(false);
+        } else if (input.menu === 'TwoCourseMeal') {
+            setThreecoursemeal(false);
+            setTwocoursemeal(true);
             setMeatonly(false);
             setSausageSizzle(false);
         }
@@ -165,6 +175,7 @@ export default function Detail() {
             setSausageSizzle(false);
             setMeatonly(false);
             setThreecoursemeal(false);
+            setTwocoursemeal(false);
         }
     };
 
@@ -265,8 +276,8 @@ export default function Detail() {
                                 >
                                     <MenuItem value='BBHSausageSizzle'>BBH Sausage Sizzle</MenuItem>
                                     <MenuItem value='BBHMeatOnly'>BBH Meat Only</MenuItem>
-                                    <MenuItem value='BBH2Course'>BBH 2 Course</MenuItem>
-                                    <MenuItem value='Threecoursemeal'>3 Course Meal</MenuItem>
+                                    <MenuItem value='TwoCourseMeal'>2 Course Meal</MenuItem>
+                                    <MenuItem value='ThreeCourseMeal'>3 Course Meal</MenuItem>
                                 </Select>
                             </FormControl>
                         </Box>
@@ -702,6 +713,23 @@ export default function Detail() {
 
             {threecoursemeal && (
                 <ThreeCourseMeal
+                    name={input.name}
+                    bread={input.bread}
+                    pumpkin={input.pumpkin}
+                    meats={input.meats}
+                    sidings={input.sidings}
+                    appetiser={input.appetiser}
+                    salad={input.salad}
+                    freebies={input.freebies}
+                    total={(Number(input.gst)) + (Number(input.staffFee)) + (Number(input.cost)) - (Number(input.discount))}
+                    functionDate={input.functionDate}
+                    number={input.guestNo}
+                    textValue={input.textValue}
+                />
+            )}
+
+            {twocoursemeal && (
+                <TwoCourseMeal
                     name={input.name}
                     bread={input.bread}
                     pumpkin={input.pumpkin}

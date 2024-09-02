@@ -72,7 +72,8 @@ export default function SausageSizzle({ textValue, name, bread, pumpkin, meats, 
                     <p style={{ textAlign: 'center' }}>If you have any questions, please feel free to call or email. I look forward to hearing from you soon.</p>
 
                     <p style={{ marginTop: '60px' }}>Kind regards,</p>
-                    <p>Geofrey Oliva - Manager</p>
+                    <p>Geofrey Oliva - Manager</p> <br />
+                    <p style={{ textDecoration: 'underline', fontStyle: 'italic' }}>Please note: The price above is based on the number of guests you have given us. Any change in the numbers will also change in the total cost.</p>
                 </div>
 
                 <img style={{ width: '100%', borderTop: '2px solid #555', height: 'auto' }} src='https://res.cloudinary.com/dedpvue13/image/upload/v1723893361/Barbehaus-letterhead_2_iwp0mv.png' alt="Barbehaus Letterhead" />

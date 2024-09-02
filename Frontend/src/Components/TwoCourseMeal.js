@@ -3,7 +3,7 @@ import { saveAs } from 'file-saver';
 import Button from '@mui/material/Button';
 
 
-export default function ThreeCourseMeal({ textValue, name, bread, pumpkin, meats, sidings, appetiser, salad, freebies, total, functionDate, number }) {
+export default function TwoCourseMeal({ textValue, name, bread, pumpkin, meats, sidings, appetiser, salad, freebies, total, functionDate, number }) {
 
     const handleDownload = () => {
         const content = document.getElementById('quotation-content').innerHTML;
@@ -54,7 +54,7 @@ export default function ThreeCourseMeal({ textValue, name, bread, pumpkin, meats
                         <br />
                         <p style={{ textAlign: 'center' }}>Your choice of four freshly prepared salads</p>
                         <p style={{ textAlign: 'center' }}>Idaho potatoes with sour cream</p>
-                        <p style={{ textAlign: 'center' }}>Barbehaus's <strong>Famous stuffed pumpkin</strong></p>
+                        <p style={{ textAlign: 'center' }}>Barbehaus's <strong>Signature stuffed pumpkin</strong></p>
                         <p style={{ textAlign: 'center' }}>Fresh bread rolls with creamy butter</p><br />
                         <p style={{ textAlign: 'center', textDecoration: 'underline' }}>Free Hire of</p>
                         <p style={{ textAlign: 'center' }}>Spits with charcoal and firelighters</p>
