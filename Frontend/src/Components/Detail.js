@@ -3,6 +3,7 @@ import * as XLSX from 'xlsx';
 import '../Detail.css';
 import SausageSizzle from './SausageSizzle';
 import MeatOnly from './MeatOnly';
+import ThreeCourseMeal from './ThreeCourseMeal';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -14,10 +15,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Download from '@mui/icons-material/Download';
 import Create from '@mui/icons-material/Create';
-
-
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { IconButton } from '@mui/material';
-import { Add } from '@mui/icons-material';
 
 
 export default function Detail() {
@@ -63,6 +62,7 @@ export default function Detail() {
 
     const [sausageSizzle, setSausageSizzle] = useState(false);
     const [meatonly, setMeatonly] = useState(false);
+    const [threecoursemeal, setThreecoursemeal] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
 
 
@@ -151,13 +151,20 @@ export default function Detail() {
         if (input.menu === 'BBHSausageSizzle') {
             setSausageSizzle(true);
             setMeatonly(false);
+            setThreecoursemeal(false);
         } else if (input.menu === 'BBHMeatOnly') {
             setSausageSizzle(false);
+            setThreecoursemeal(false);
             setMeatonly(true);
+        } else if (input.menu === 'ThreeCourseMeal') {
+            setThreecoursemeal(true);
+            setMeatonly(false);
+            setSausageSizzle(false);
         }
         else {
             setSausageSizzle(false);
             setMeatonly(false);
+            setThreecoursemeal(false);
         }
     };
 
@@ -231,6 +238,7 @@ export default function Detail() {
                         <TextField id="outlined-basic" label="No of Guest" variant="outlined" onChange={handleChange} value={input.guestNo} type='number' name='guestNo' required />
 
                     </div>
+
                 </div>
 
                 <div className="row">
@@ -258,7 +266,7 @@ export default function Detail() {
                                     <MenuItem value='BBHSausageSizzle'>BBH Sausage Sizzle</MenuItem>
                                     <MenuItem value='BBHMeatOnly'>BBH Meat Only</MenuItem>
                                     <MenuItem value='BBH2Course'>BBH 2 Course</MenuItem>
-                                    <MenuItem value='BBH3Course'>BBH 3 Course</MenuItem>
+                                    <MenuItem value='Threecoursemeal'>3 Course Meal</MenuItem>
                                 </Select>
                             </FormControl>
                         </Box>
@@ -324,7 +332,7 @@ export default function Detail() {
                                         color="success"
                                         onClick={() => addOption('bread')}
                                     >
-                                        <Add />
+                                        <AddBoxIcon />
                                     </IconButton>
                                 )}
                             </div>
@@ -365,7 +373,7 @@ export default function Detail() {
                                         color="success"
                                         onClick={() => addOption('pumpkin')}
                                     >
-                                        <Add />
+                                        <AddBoxIcon />
                                     </IconButton>
                                 )}
                             </div>
@@ -408,7 +416,7 @@ export default function Detail() {
                                         color="success"
                                         onClick={() => addOption('sidings')}
                                     >
-                                        <Add />
+                                        <AddBoxIcon />
                                     </IconButton>
                                 )}
                             </div>
@@ -450,7 +458,7 @@ export default function Detail() {
                                         color="success"
                                         onClick={() => addOption('meats')}
                                     >
-                                        <Add />
+                                        <AddBoxIcon />
                                     </IconButton>
                                 )}
                             </div>
@@ -481,7 +489,7 @@ export default function Detail() {
                                         color="success"
                                         onClick={() => addOption('salad')}
                                     >
-                                        <Add />
+                                        <AddBoxIcon />
                                     </IconButton>
                                 )}
                             </div>
@@ -523,7 +531,7 @@ export default function Detail() {
                                         color="success"
                                         onClick={() => addOption('appetiser')}
                                     >
-                                        <Add />
+                                        <AddBoxIcon />
                                     </IconButton>
                                 )}
                             </div>
@@ -563,7 +571,7 @@ export default function Detail() {
                                         color="success"
                                         onClick={() => addOption('freebies')}
                                     >
-                                        <Add />
+                                        <AddBoxIcon />
                                     </IconButton>
                                 )}
                             </div>
@@ -646,8 +654,8 @@ export default function Detail() {
                 </div>
             </div>
 
+            <span className='flex justify-center items-center gap-2 mb-10 text-red-500'>All the fields are required to be filled.</span>
             <div className='flex justify-center items-center gap-2 mb-10'>
-
                 <Button color='success' variant="outlined" startIcon={<Download />} onClick={handleSave} disabled={!isFormValid}>
                     Download
                 </Button>
@@ -677,6 +685,23 @@ export default function Detail() {
 
             {meatonly && (
                 <MeatOnly
+                    name={input.name}
+                    bread={input.bread}
+                    pumpkin={input.pumpkin}
+                    meats={input.meats}
+                    sidings={input.sidings}
+                    appetiser={input.appetiser}
+                    salad={input.salad}
+                    freebies={input.freebies}
+                    total={(Number(input.gst)) + (Number(input.staffFee)) + (Number(input.cost)) - (Number(input.discount))}
+                    functionDate={input.functionDate}
+                    number={input.guestNo}
+                    textValue={input.textValue}
+                />
+            )}
+
+            {threecoursemeal && (
+                <ThreeCourseMeal
                     name={input.name}
                     bread={input.bread}
                     pumpkin={input.pumpkin}

@@ -3,7 +3,7 @@ import { saveAs } from 'file-saver';
 import Button from '@mui/material/Button';
 
 
-export default function MeatOnly({ textValue, name, bread, pumpkin, meats, sidings, appetiser, salad, freebies, total, functionDate, number }) {
+export default function ThreeCourseMeal({ textValue, name, bread, pumpkin, meats, sidings, appetiser, salad, freebies, total, functionDate, number }) {
 
     const handleDownload = () => {
         const content = document.getElementById('quotation-content').innerHTML;
@@ -42,7 +42,7 @@ export default function MeatOnly({ textValue, name, bread, pumpkin, meats, sidin
                     <p>Dear {name},</p>
                     <p>Thank you for your inquiry. Barbehire would love to cater for your event! Please find your quotation below:</p>
 
-                    <p style={{ textAlign: 'center', fontSize: '25px', fontWeight: 'bold', textDecoration: 'underline', margin: '40px 0' }}>Chef and Meat Package for {number} Guests</p>
+                    <p style={{ textAlign: 'center', fontSize: '25px', fontWeight: 'bold', textDecoration: 'underline', margin: '40px 0' }}>Deluxe Split Roast Package for {number} Guests</p>
 
                     <div style={{ margin: '20px 0', paddingLeft: '20px', textAlign: 'center' }}>
                         <p><strong>Bread:</strong> {bread.join(', ')}</p>
@@ -52,10 +52,22 @@ export default function MeatOnly({ textValue, name, bread, pumpkin, meats, sidin
                         <p><strong>Appetiser:</strong> {appetiser.join(', ')}</p>
                         <p><strong>Salad:</strong> {salad.join(', ')}</p>
                         <br />
-                        <p style={{ textAlign: 'center' }}><strong>Chef Service:</strong> Your own personal chef to setup, cook, carve and serve</p>
+                        <p style={{ textAlign: 'center' }}>Your choice of four freshly prepared salads</p>
+                        <p style={{ textAlign: 'center' }}>Idaho potatoes with sour cream</p>
+                        <p style={{ textAlign: 'center' }}>Barbehaus's <strong>famous stuffed pumpkin</strong></p>
+                        <p style={{ textAlign: 'center' }}>Fresh bread rolls with creamy butter</p><br />
+                        <p style={{ textAlign: 'center', textDecoration: 'underline' }}>Free Hire of</p>
+                        <p style={{ textAlign: 'center' }}>Spits with charcoal and firelighters</p>
+                        <p style={{ textAlign: 'center' }}>Disposable plates, cutlery and all serving utensils</p>
+                        <p style={{ textAlign: 'center' }}>Washing up of all equipment and crockery</p>
+                        <p style={{ textAlign: 'center' }}>Condiments and Serviettes</p>
                     </div>
 
-                    <p style={{ textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}>TOTAL: <span style={{ color: '#d9534f' }}>${total} </span> (GST Inclusive)</p>
+                    <p style={{ textAlign: 'center' }}>Your own professional chef(s) to set up, prepare the food,</p>
+                    <p style={{ textAlign: 'center' }}>cook and carve the meats onto your guest's plates</p>
+                    <br />
+
+                    <p style={{ textAlign: 'center', fontSize: '22px', fontWeight: 'bold' }}>All this for just: <span style={{ color: '#d9534f' }}>${total} </span> (GST Inclusive)</p>
                     <p style={{ textAlign: 'center', fontStyle: 'italic', textDecoration: 'underline' }}> Note: 2.3% surcharge will apply for credit card payment.</p>
 
                     <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '40px 0' }} />
@@ -66,7 +78,6 @@ export default function MeatOnly({ textValue, name, bread, pumpkin, meats, sidin
                     <p style={{ textDecoration: 'underline', fontWeight: 'bold', textAlign: 'center' }}>Additional Notes</p>
                     <p style={{ textAlign: 'center' }}>{textValue}</p> <br />
 
-                    <p style={{ textAlign: 'center' }}>Your chef will arrive 5 hours before eating time. A source of power will be needed.</p>
                     <p style={{ textAlign: 'center' }}>Our chef will cook and serve the juicy Barbecue Sizzle to your guests, adding their own personal touch on the night. Your guests will not only leave your party with a belly full of great food, but also feeling satisfied that their meal was really looked after.</p>
 
                     <p style={{ textAlign: 'center' }}>If you have any questions, please feel free to call or email. I look forward to hearing from you soon.</p>
