@@ -71,15 +71,31 @@ export default function Detail() {
     const formatPhoneNumber = (number) => {
         const cleaned = number.replace(/\D/g, '');
         const limitedDigits = cleaned.slice(0, 10);
+        if (limitedDigits.length < 10) return limitedDigits;
         const formatted = limitedDigits.replace(/(\d{4})(\d{3})(\d{3})/, '$1 $2 $3');
         return formatted;
     };
 
     const validateForm = (updatedInput) => {
-        const { name, email, total, menu, guestNo, phNumber, meats, bread, pumpkin, sidings, salad, appetiser } = updatedInput;
+        const {
+            name = '',
+            email = '',
+            gst = '',
+            cost = '',
+            staffFee = '',
+            functionDate = '',
+            menu = '',
+            guestNo = '',
+            phNumber = '',
+            meats = [],
+            bread = [],
+            pumpkin = [],
+            sidings = [],
+            salad = [],
+            appetiser = []
+        } = updatedInput;
 
-
-        const allFieldsFilled = phNumber && name && email && total && menu && guestNo &&
+        const allFieldsFilled = phNumber && menu && guestNo && email && name && functionDate && gst && cost && staffFee &&
             meats.every((item) => item.trim() !== '') &&
             bread.every((item) => item.trim() !== '') &&
             pumpkin.every((item) => item.trim() !== '') &&
@@ -603,7 +619,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="Staff fee" variant="outlined" onChange={handleChange} value={input.staffFee} type='number' name='staffFee' InputProps={{
+                        <TextField id="outlined-basic" label="Staff fee" variant="outlined" onChange={handleChange} value={input.staffFee} required type='number' name='staffFee' InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
@@ -613,7 +629,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="Cost" variant="outlined" onChange={handleChange} value={input.cost} type='number' name='cost' InputProps={{
+                        <TextField id="outlined-basic" label="Cost" variant="outlined" onChange={handleChange} value={input.cost} type='number' required name='cost' InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
@@ -624,7 +640,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="GST" variant="outlined" onChange={handleChange} value={input.gst} type='number' name='gst' InputProps={{
+                        <TextField id="outlined-basic" label="GST" variant="outlined" onChange={handleChange} value={input.gst} type='number' required name='gst' InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
@@ -644,7 +660,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="Total cost" variant="outlined" onChange={handleChange} required value={(Number(input.gst)) + (Number(input.staffFee)) + (Number(input.cost)) - (Number(input.discount))} type='number' name='total' InputProps={{
+                        <TextField id="outlined-basic" label="Total cost" variant="outlined" onChange={handleChange} value={(Number(input.gst)) + (Number(input.staffFee)) + (Number(input.cost)) - (Number(input.discount))} type='number' name='total' InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
