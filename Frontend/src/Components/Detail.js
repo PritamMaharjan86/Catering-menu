@@ -76,7 +76,7 @@ export default function Detail() {
     };
 
     const validateForm = (updatedInput) => {
-        const {name, email, total, menu, guestNo, phNumber, meats, bread, pumpkin, sidings, salad, appetiser } = updatedInput;
+        const { name, email, total, menu, guestNo, phNumber, meats, bread, pumpkin, sidings, salad, appetiser } = updatedInput;
 
 
         const allFieldsFilled = phNumber && name && email && total && menu && guestNo &&
@@ -603,7 +603,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="Staff fee" variant="outlined" onChange={handleChange} value={input.staffFee} type='number' name='staffFee'  InputProps={{
+                        <TextField id="outlined-basic" label="Staff fee" variant="outlined" onChange={handleChange} value={input.staffFee} type='number' name='staffFee' InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
@@ -613,7 +613,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="Cost" variant="outlined" onChange={handleChange} value={input.cost} type='number' name='cost'  InputProps={{
+                        <TextField id="outlined-basic" label="Cost" variant="outlined" onChange={handleChange} value={input.cost} type='number' name='cost' InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
@@ -624,7 +624,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="GST" variant="outlined" onChange={handleChange} value={input.gst} type='number' name='gst'  InputProps={{
+                        <TextField id="outlined-basic" label="GST" variant="outlined" onChange={handleChange} value={input.gst} type='number' name='gst' InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
@@ -634,7 +634,7 @@ export default function Detail() {
                             noValidate
                             autoComplete="off"
                         ></Box>
-                        <TextField id="outlined-basic" label="Discount" variant="outlined" onChange={handleChange} value={input.discount} type='number' name='discount'  InputProps={{
+                        <TextField id="outlined-basic" label="Discount" variant="outlined" onChange={handleChange} value={input.discount} type='number' name='discount' InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
 
