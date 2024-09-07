@@ -653,6 +653,7 @@ export default function Detail() {
                         <TextField id="outlined-basic" label="Discount" variant="outlined" onChange={handleChange} value={input.discount} type='number' name='discount' InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                         }} />
+                        
 
                         <Box
                             component="form"

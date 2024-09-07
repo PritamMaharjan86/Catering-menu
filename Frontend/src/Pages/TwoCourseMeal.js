@@ -56,7 +56,7 @@ export default function TwoCourseMeal({ textValue, name, bread, pumpkin, meats, 
                         <p style={{ textAlign: 'center' }}>Idaho potatoes with sour cream</p>
                         <p style={{ textAlign: 'center' }}>Barbehaus's <strong>Signature stuffed pumpkin</strong></p>
                         <p style={{ textAlign: 'center' }}>Fresh bread rolls with creamy butter</p><br />
-                        <p style={{ textAlign: 'center', textDecoration: 'underline' }}>Free Hire of</p>
+                        <p style={{ textAlign: 'center', textDecoration: 'underline' }}> <strong>Free Hire of</strong></p>
                         <p style={{ textAlign: 'center' }}>Spits with charcoal and firelighters</p>
                         <p style={{ textAlign: 'center' }}>Disposable plates, cutlery and all serving utensils</p>
                         <p style={{ textAlign: 'center' }}>Washing up of all equipment and crockery</p>
